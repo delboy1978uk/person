@@ -19,6 +19,7 @@ class Person
     public function __construct(Connection $connection)
     {
         $this->connection = $connection;
+        $this->table = 'person';
     }
 
     /**
@@ -31,7 +32,7 @@ class Person
 
     /**
      * @param $id
-     * @return mixed
+     * @return null|Person
      */
     public function findById($id)
     {
