@@ -2,24 +2,26 @@
 
 namespace Del\Collection;
 
-use Del\Entity\Person;
+use ArrayIterator;
+use Del\Entity\Person as PersonEntity;
+use LogicException;
 
 class Person extends ArrayIterator
 {
     /**
-     * @return Person
+     * @return PersonEntity
      */
     public function getFirstItem()
     {
         if ($this->count() === 0) {
-            throw new LogicException('No items in schedule collection');
+            throw new LogicException('No people in the collection');
         }
         $this->rewind();
         return $this->current();
     }
 
     /**
-     * @return Person
+     * @return PersonEntity
      */
     public function getLastItem()
     {
@@ -32,10 +34,10 @@ class Person extends ArrayIterator
 
 
     /**
-     * @param Person $person
+     * @param PersonEntity $person
      * @return $this
      */
-    public function update(Person $person)
+    public function update(PersonEntity $person)
     {
         $key = $this->findKey($person);
         if($key) {
@@ -48,15 +50,15 @@ class Person extends ArrayIterator
     }
 
     /**
-     * @param Person $person
+     * @param PersonEntity $person
      */
-    public function append(Person $person)
+    public function append(PersonEntity $person)
     {
         parent::append($person);
     }
 
     /**
-     * @return Person|null
+     * @return PersonEntity|null
      */
     public function current()
     {
@@ -64,13 +66,12 @@ class Person extends ArrayIterator
     }
 
     /**
-     * @param Person $person
+     * @param PersonEntity $person
      * @return bool|int
      */
-    public function findKey(Person $person)
+    public function findKey(PersonEntity $person)
     {
         $this->rewind();
-        /** @var OutboundPaymentScheduleEntity $installment */
         while($this->valid()) {
             if($this->current()->getId() == $person->getId()) {
                 return $this->key();
@@ -81,7 +82,7 @@ class Person extends ArrayIterator
     }
 
     /**
-     * @return Person|null
+     * @return PersonEntity|null
      */
     public function prev()
     {

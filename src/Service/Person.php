@@ -3,7 +3,7 @@
 namespace Del\Service;
 
 use Del\Collection\Person as PersonCollection;
-use Del\Entity\Person;
+use Del\Entity\Person as PersonEntity;
 use Del\Repository\Person as PersonRepository;
 use Pimple\Container;
 
@@ -18,11 +18,11 @@ class Person
 
    /** 
     * @param array $data
-    * @return Person
+    * @return PersonEntity
     */
     public function createFromArray(array $data)
     {
-        $person = new Person();
+        $person = new PersonEntity();
         return $person;
     }
 
