@@ -14,6 +14,9 @@ addons:
 
 sudo: false
 
+services:
+  - mysql
+
 
 install:
   - wget http://selenium-release.storage.googleapis.com/2.42/selenium-server-standalone-2.42.2.jar
@@ -26,7 +29,7 @@ before_script:
   - sh -e /etc/init.d/xvfb start
   - sleep 5
   - java -jar selenium-server-standalone-2.42.2.jar -port 4444 &
-  - echo "CREATE DATABASE bone_db; USE mysql;\nGRANT ALL PRIVILEGES ON *.* TO dbuser@"%" IDENTIFIED BY '[123456]';\nFLUSH PRIVILEGES;\n " | mysql -u root
+  - echo "CREATE DATABASE delboy1978uk; USE mysql;\nGRANT ALL PRIVILEGES ON *.* TO dbuser@"%" IDENTIFIED BY '[123456]';\nFLUSH PRIVILEGES;\n " | mysql -u root
 
 script:
   - php vendor/bin/codecept run unit --coverage-xml --env travis
