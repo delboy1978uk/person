@@ -26,7 +26,7 @@ before_script:
   - sh -e /etc/init.d/xvfb start
   - sleep 5
   - java -jar selenium-server-standalone-2.42.2.jar -port 4444 &
-  - "mysql -e 'create database delboy1978uk;'"
+  - echo "CREATE DATABASE bone_db; USE mysql;\nGRANT ALL PRIVILEGES ON *.* TO dbuser@"%" IDENTIFIED BY '[123456]';\nFLUSH PRIVILEGES;\n " | mysql -u root
 
 script:
   - php vendor/bin/codecept run unit --coverage-xml --env travis
