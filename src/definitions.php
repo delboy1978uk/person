@@ -15,3 +15,5 @@ $container['db.connection'] = $container->factory(function ($c) {
 $container['repository.person'] = $container->factory(function ($c) {
     return new PersonRepository($c['db.connection']);
 });
+
+return $container;

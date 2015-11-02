@@ -17,7 +17,8 @@
     },
     "autoload":{
         "psr-4":{
-            "Del\\":"src/"
+            "Del\\":"src/",
+            "DelTesting\\":"tests/unit/Del/"
         }
     }
 }

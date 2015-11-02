@@ -1,13 +1,11 @@
 <?php
-
 namespace Del\Repository;
 
-use Del\Entity\Person as PersonEntity;
+use Del\Entity\HydratableInterface;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Query\QueryBuilder;
-use Exception;
 
-class Person extends RepositoryAbstract
+class RepositoryAbstract
 {
     /** @var \Doctrine\DBAL\Connection */
     protected $connection;
@@ -20,8 +18,7 @@ class Person extends RepositoryAbstract
      */
     public function __construct(Connection $connection)
     {
-        $this->table = 'person';
-        parent::__construct($connection);
+        $this->connection = $connection;
     }
 
     /**
@@ -34,20 +31,17 @@ class Person extends RepositoryAbstract
 
     /**
      * @param $id
-     * @return PersonEntity
-     * @throws Exception
+     * @return mixed
      */
     public function findById($id)
     {
-        $row = parent::findById($id);
+        $sql = "SELECT * FROM " . $this->table . " WHERE id = :id";
+        $query = $this->connection->prepare($sql);
+        $query->bindValue('id', $id);
+        $query->execute();
 
-        if ($row === false) {
-            throw new Exception('Could not find person');
-        }
-
-        $entity = new PersonEntity($row);
-
-        return $entity;
+        $row = $query->fetch();
+        return $row;
     }
 
     public function delete($id)
@@ -72,4 +66,20 @@ class Person extends RepositoryAbstract
         return $query;
     }
 
+    /**
+     * @param $entity
+     * @return HydratableInterface
+     */
+    public function save(HydratableInterface $entity)
+    {
+        $array = $entity->toArray();
+        if (empty($array['id'])) {
+            $this->connection->insert($this->table, $array);
+            $id = $this->connection->lastInsertId();
+            $entity->setId($id);
+        } else {
+            $this->connection->update($this->table, $array, ['id' => $array['id']]);
+        }
+        return $entity;
+    }
 }

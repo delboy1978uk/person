@@ -5,7 +5,7 @@
  * Time: 20:55
  */
 
-namespace Del\Driver;
+namespace DelTesting\Driver;
 
 use Doctrine\DBAL\Driver\PDOMySql\Driver;
 

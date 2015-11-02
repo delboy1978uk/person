@@ -3,8 +3,9 @@
 namespace Del\Entity;
 
 use DateTime;
+use Del\Traits\Hydratable;
 
-class Person
+class Person implements HydratableInterface
 {
     /** @var int */
     private $id;
@@ -29,6 +30,8 @@ class Person
 
     /** @var string */
     private $birthplace;
+
+    use Hydratable;
 
     /**
      * @return int
@@ -143,16 +146,16 @@ class Person
      */
     public function getDob()
     {
-        return $this->dob;
+        return new DateTime($this->dob);
     }
 
     /**
-     * @param DateTime $dob
+     * @param $dob
      * @return Person
      */
     public function setDob($dob)
     {
-        $this->dob = $dob;
+        $this->dob = $dob instanceof DateTime ? $dob->format('Y-m-d') : $dob;
         return $this;
     }
 

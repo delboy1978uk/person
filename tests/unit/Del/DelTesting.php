@@ -1,8 +1,8 @@
 <?php
-namespace Del;
+namespace DelTesting;
 
-use Pimple\Container as PimpleContainer;
 use Del\Container;
+use Pimple\Container as PimpleContainer;
 
 class DelTesting
 {
