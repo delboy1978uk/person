@@ -4,7 +4,6 @@ namespace Del\Repository;
 
 use Del\Entity\Person as PersonEntity;
 use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Query\QueryBuilder;
 use Exception;
 
 class Person extends RepositoryAbstract
@@ -25,14 +24,6 @@ class Person extends RepositoryAbstract
     }
 
     /**
-     * @return \Doctrine\DBAL\Connection
-     */
-    public function getDBALConnection()
-    {
-        return $this->connection;
-    }
-
-    /**
      * @param $id
      * @return PersonEntity
      * @throws Exception
@@ -50,26 +41,12 @@ class Person extends RepositoryAbstract
         return $entity;
     }
 
-    public function delete($id)
-    {
-        $this->connection->delete($this->table, ['id' => $id]);
-    }
-
     /**
-     * @param QueryBuilder $query
-     * @param $limit
-     * @param $offset
-     * @return QueryBuilder
+     * @param PersonEntity $person
+     * @return PersonEntity
      */
-    protected function setLimitAndOffset(QueryBuilder &$query, $limit, $offset = 0)
+    public function save(PersonEntity $person)
     {
-        if ($offset > -1) {
-            $query->setFirstResult($offset);
-        }
-        if ($limit) {
-            $query->setMaxResults($limit);
-        }
-        return $query;
+        return parent::save($person);
     }
-
 }

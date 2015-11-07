@@ -36,7 +36,7 @@ class RepositoryAbstract
     public function findById($id)
     {
         $sql = "SELECT * FROM " . $this->table . " WHERE id = :id";
-        $query = $this->connection->prepare($sql);
+        $query = $this->getDBALConnection()->prepare($sql);
         $query->bindValue('id', $id);
         $query->execute();
 
@@ -46,7 +46,7 @@ class RepositoryAbstract
 
     public function delete($id)
     {
-        $this->connection->delete($this->table, ['id' => $id]);
+        $this->getDBALConnection()->delete($this->table, ['id' => $id]);
     }
 
     /**
@@ -74,8 +74,8 @@ class RepositoryAbstract
     {
         $array = $entity->toArray();
         if (empty($array['id'])) {
-            $this->connection->insert($this->table, $array);
-            $id = $this->connection->lastInsertId();
+            $this->getDBALConnection()->insert($this->table, $array);
+            $id = $this->getDBALConnection()->lastInsertId();
             $entity->setId($id);
         } else {
             $this->connection->update($this->table, $array, ['id' => $array['id']]);

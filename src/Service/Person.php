@@ -27,6 +27,15 @@ class Person
         return $person;
     }
 
+    /**
+     * @param PersonEntity $person
+     * @return PersonEntity
+     */
+    public function savePerson(PersonEntity $person)
+    {
+        return $this->getRepository()->save($person);
+    }
+
    /**
     * @return PersonRepository
     */
