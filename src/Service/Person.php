@@ -23,6 +23,7 @@ class Person
     public function createFromArray(array $data)
     {
         $person = new PersonEntity();
+        $person->setFromArray($data);
         return $person;
     }
 
