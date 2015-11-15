@@ -93,4 +93,18 @@ class Person extends ArrayIterator
         return $this->current();
     }
 
+    public function findById($id)
+    {
+        $this->rewind();
+        
+        while ($this->valid()) {
+            if($this->current()->getId() == $id) {
+                return $this->current();
+            }
+            $this->next();
+        }
+
+        return false;
+    }
+
 }
