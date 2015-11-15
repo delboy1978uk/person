@@ -5,7 +5,7 @@ namespace Del\Repository;
 use Codeception\TestCase\Test;
 use DateTime;
 use Del\Entity\Person as PersonEntity;
-use Del\Service\Person as PersonService;
+use Del\Repository\Person as PersonRepository;
 use DelTesting\DelTesting;
 
 class PersonRepositoryTest extends Test
@@ -16,15 +16,14 @@ class PersonRepositoryTest extends Test
     protected $tester;
 
     /**
-     * @var Person
+     * @var PersonRepository
      */
     protected $db;
 
     protected function _before()
     {
         $container = DelTesting::getContainer();
-        $svc = new PersonService($container);
-        $this->db = $svc->getRepository();
+        $this->db = $container['repository.person'];
     }
 
     protected function _after()
@@ -46,7 +45,7 @@ class PersonRepositoryTest extends Test
         /** @var PersonEntity $person */
         $person = $this->db->save($person);
         $id = $person->getId();
-        $person = $this->db->findById($id);
+        $person = $this->db->find($id);
 
         $this->assertEquals($id,$person->getId());
         $this->assertEquals('Derek',$person->getFirstname());
@@ -57,10 +56,8 @@ class PersonRepositoryTest extends Test
         $this->assertEquals('Glasgow',$person->getBirthplace());
         $this->assertEquals('GBR',$person->getCountry());
 
-        $this->db->delete($id);
-
-        $this->setExpectedException('Exception');
-        $this->db->findById($id);
+        $this->db->delete($person);
+        $this->assertNull($this->db->find($id));
     }
 
 }

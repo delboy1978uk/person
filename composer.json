@@ -9,7 +9,8 @@
         }
     ],
     "require": {
-        "doctrine/dbal": "2.5.2",
+        "doctrine/orm": "2.5.1",
+        "doctrine/migrations": "1.1.0",
         "pimple/pimple": "3.0.2"
     },
     "require-dev":{

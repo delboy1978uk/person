@@ -1,19 +1,33 @@
 <?php
 
 use Pimple\Container;
-use Doctrine\DBAL\DriverManager;
-use Del\Service\Person as PersonService;
+use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\EntityManager;
 use Del\Repository\Person as PersonRepository;
 
 $container = new Container();
 
-$container['db.connection'] = $container->factory(function ($c) {
-    return DriverManager::getConnection($c['db.credentials']);
+$container['doctrine.entity_manager'] = $container->factory(function ($c) {
+
+    $paths = [__DIR__ . "/Entity"];
+
+    $isDevMode = false;
+
+    $dbParams = $c['db.credentials'];
+
+    $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
+    $entityManager = EntityManager::create($dbParams, $config);
+
+    return $entityManager;
 });
 
 // Repositories
 $container['repository.person'] = $container->factory(function ($c) {
-    return new PersonRepository($c['db.connection']);
+    /** @var EntityManager $em */
+    $em = $c['doctrine.entity_manager'];
+    /** @var PersonRepository $repo */
+    $repo = $em->getRepository('Del\Entity\Person');
+    return $repo;
 });
 
 return $container;

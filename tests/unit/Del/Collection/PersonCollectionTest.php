@@ -28,24 +28,6 @@ class PersonPeopleTest extends Test
         unset($this->people);
     }
 
-    public function testGetFirstItem()
-    {
-        $payment = $this->getInboundPayment('testGetFirstItem');
-        $payment = $this->svc->createInboundPayment($payment);
-        $payment = $this->svc->createNewInboundSchedule($payment);
-        $this->assertEquals('15/09/2015',$payment->getPaymentSchedule()->getFirstItem()->getDueDate()->format('d/m/Y'));
-        $this->svc->deleteInboundPayment($payment);
-    }
-
-    public function testGetLastItem()
-    {
-        $payment = $this->getInboundPayment('testGetLastItem');
-        $payment = $this->svc->createInboundPayment($payment);
-        $payment = $this->svc->createNewInboundSchedule($payment);
-        $this->assertEquals('17/11/2015',$payment->getPaymentSchedule()->getLastItem()->getDueDate()->format('d/m/Y'));
-        $this->svc->deleteInboundPayment($payment);
-    }
-
 
     public function testFindKeyReturnsFalseWhenNotInPeople()
     {
@@ -59,6 +41,20 @@ class PersonPeopleTest extends Test
         $person = new Person();
         $person->setId(3);
         $this->assertFalse($collection->findKey($person));
+    }
+
+    public function testFindById()
+    {
+        $collection = new People();
+        $person = new Person();
+        $person->setId(1);
+        $collection->append($person);
+        $person = new Person();
+        $person->setId(2);
+        $collection->append($person);
+
+        $person = $collection->findById(2);
+        $this->assertInstanceOf('Del\Entity\Person',$person);
     }
 
     public function testFindByIdReturnsFalse()
@@ -85,12 +81,16 @@ class PersonPeopleTest extends Test
         $person = new Person();
         $person->setId(3);
         $collection->append($person);
-        $collection->rewind();
+        $collection->first();
         $collection->next();
         $person = $collection->current(); //id 2
         $person->setFirstname('Theodoric');
         $collection->update($person);
         $this->assertEquals('Theodoric',$collection[1]->getFirstname());
+        $person = new Person();
+        $person->setId(4);
+        $this->setExpectedException('LogicException');
+        $collection->update($person);
     }
 
 }

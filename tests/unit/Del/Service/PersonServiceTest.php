@@ -3,6 +3,7 @@
 namespace Del\Repository;
 
 use Codeception\TestCase\Test;
+use DateTime;
 use Del\Service\Person as PersonService;
 use DelTesting\DelTesting;
 
@@ -21,7 +22,7 @@ class PersonServiceest extends Test
     protected function _before()
     {
         $container = DelTesting::getContainer();
-        $this->svc = new PersonService($container);
+        $this->svc = new PersonService($container['doctrine.entity_manager']);
     }
 
     protected function _after()
@@ -43,10 +44,20 @@ class PersonServiceest extends Test
         $this->assertEquals('GBR', $person->getCountry());
     }
 
-    public function testGetRepository()
+    public function testToArray()
     {
-        $db = $this->svc->getRepository();
-        $this->assertInstanceOf('Del\Repository\Person', $db);
+        $array = $this->getPersonArray();
+        $person = $this->svc->createFromArray($array);
+        $array = $this->svc->toArray($person);
+
+        $this->assertArrayHasKey('id', $array);
+        $this->assertArrayHasKey('firstname', $array);
+        $this->assertArrayHasKey('middlename', $array);
+        $this->assertArrayHasKey('lastname', $array);
+        $this->assertArrayHasKey('aka', $array);
+        $this->assertArrayHasKey('dob', $array);
+        $this->assertArrayHasKey('birthplace', $array);
+        $this->assertArrayHasKey('country', $array);
     }
 
 
@@ -72,7 +83,7 @@ class PersonServiceest extends Test
             'middlename' => 'Stephen',
             'lastname' => 'McLean',
             'aka' => 'Delboy',
-            'dob' => '1978-02-17',
+            'dob' => new DateTime('1978-02-17'),
             'birthplace' => 'Glasgow',
             'country' => 'GBR',
         ];

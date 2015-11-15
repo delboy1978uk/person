@@ -2,37 +2,12 @@
 
 namespace Del\Collection;
 
-use ArrayIterator;
 use Del\Entity\Person as PersonEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 use LogicException;
 
-class Person extends ArrayIterator
+class Person extends ArrayCollection
 {
-    /**
-     * @return PersonEntity
-     */
-    public function getFirstItem()
-    {
-        if ($this->count() === 0) {
-            throw new LogicException('No people in the collection');
-        }
-        $this->rewind();
-        return $this->current();
-    }
-
-    /**
-     * @return PersonEntity
-     */
-    public function getLastItem()
-    {
-        if ($this->count() === 0) {
-            throw new LogicException('No people in the collection');
-        }
-        $count = $this->count() - 1;
-        return $this->offsetGet($count);
-    }
-
-
     /**
      * @param PersonEntity $person
      * @return $this
@@ -54,7 +29,7 @@ class Person extends ArrayIterator
      */
     public function append(PersonEntity $person)
     {
-        parent::append($person);
+        parent::add($person);
     }
 
     /**
@@ -71,37 +46,28 @@ class Person extends ArrayIterator
      */
     public function findKey(PersonEntity $person)
     {
-        $this->rewind();
-        while($this->valid()) {
-            if($this->current()->getId() == $person->getId()) {
-                return $this->key();
+        $it = $this->getIterator();
+        $it->rewind();
+        while($it->valid()) {
+            if($it->current()->getId() == $person->getId()) {
+                return $it->key();
             }
-            $this->next();
+            $it->next();
         }
         return false;
     }
 
-    /**
-     * @return PersonEntity|null
-     */
-    public function prev()
-    {
-        if ($this->key() == 0) {
-            return null;
-        }
-        $this->seek($this->key() - 1);
-        return $this->current();
-    }
+
 
     public function findById($id)
     {
-        $this->rewind();
-        
-        while ($this->valid()) {
-            if($this->current()->getId() == $id) {
-                return $this->current();
+        $it = $this->getIterator();
+        $it->rewind();
+        while($it->valid()) {
+            if($it->current()->getId() == $id) {
+                return $it->current();
             }
-            $this->next();
+            $it->next();
         }
 
         return false;

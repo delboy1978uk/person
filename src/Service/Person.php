@@ -2,18 +2,19 @@
 
 namespace Del\Service;
 
-use Del\Collection\Person as PersonCollection;
 use Del\Entity\Person as PersonEntity;
 use Del\Repository\Person as PersonRepository;
+use Doctrine\ORM\EntityManager;
 use Pimple\Container;
 
 class Person
 {
-    private $container;
+    /** @var EntityManager $em */
+    protected $em;
 
-    public function __construct(Container $container)
+    public function __construct(EntityManager $em)
     {
-        $this->container = $container;
+        $this->em = $em;
     }
 
    /** 
@@ -23,8 +24,34 @@ class Person
     public function createFromArray(array $data)
     {
         $person = new PersonEntity();
-        $person->setFromArray($data);
+        isset($data['id']) ? $person->setId($data['id']) : null;
+        isset($data['firstname']) ? $person->setFirstname($data['firstname']) : null;
+        isset($data['middlename']) ? $person->setMiddlename($data['middlename']) : null;
+        isset($data['lastname']) ? $person->setLastname($data['lastname']) : null;
+        isset($data['aka']) ? $person->setAka($data['aka']) : null;
+        isset($data['dob']) ? $person->setDob($data['dob']) : null;
+        isset($data['birthplace']) ? $person->setBirthplace($data['birthplace']) : null;
+        isset($data['country']) ? $person->setCountry($data['country']) : null;
         return $person;
+    }
+
+    /**
+     * @param array $person
+     * @return PersonEntity
+     */
+    public function toArray(PersonEntity $person)
+    {
+        $data = [
+            'id' => $person->getId(),
+            'firstname' => $person->getFirstname(),
+            'middlename' => $person->getMiddlename(),
+            'lastname' => $person->getLastname(),
+            'aka' => $person->getAka(),
+            'dob' => $person->getDob(),
+            'birthplace' => $person->getBirthplace(),
+            'country' => $person->getCountry(),
+        ];
+        return $data;
     }
 
     /**
@@ -39,8 +66,8 @@ class Person
    /**
     * @return PersonRepository
     */
-    public function getRepository()
+    protected function getRepository()
     {
-        return $this->container['repository.person'];
+        return $this->em->getRepository('Del\Entity\Person');
     }
 }

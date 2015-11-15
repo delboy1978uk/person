@@ -3,35 +3,42 @@
 namespace Del\Entity;
 
 use DateTime;
-use Del\Traits\Hydratable;
 
-class Person implements HydratableInterface
+/**
+ * @Entity(repositoryClass="\Del\Repository\Person")
+ */
+class Person
 {
-    /** @var int */
+    /**
+     * @Id
+     * @Column(type="integer")
+     * @GeneratedValue
+     */
     private $id;
 
-    /** @var  string */
-    private $country;
-
-    /** @var string */
+    /** @Column(type="string",length=60,nullable=true) */
     private $firstname;
 
-    /** @var string */
+    /** @Column(type="string",length=60,nullable=true) */
     private $middlename;
 
-    /** @var  string */
+    /** @Column(type="string",length=60,nullable=true) */
     private $lastname;
 
-    /** @var  string */
+    /** @Column(type="string",length=60,nullable=true) */
     private $aka;
 
-    /** @var DateTime */
+    /**
+     * @Column(type="date",nullable=true)
+     * @var DateTime
+     */
     private $dob;
 
-    /** @var string */
+    /** @Column(type="string",length=50,nullable=true) */
     private $birthplace;
 
-    use Hydratable;
+    /** @var string */
+    private $country;
 
     /**
      * @return int
@@ -146,16 +153,16 @@ class Person implements HydratableInterface
      */
     public function getDob()
     {
-        return new DateTime($this->dob);
+        return $this->dob;
     }
 
     /**
      * @param $dob
      * @return Person
      */
-    public function setDob($dob)
+    public function setDob(DateTime $dob)
     {
-        $this->dob = $dob instanceof DateTime ? $dob->format('Y-m-d') : $dob;
+        $this->dob = $dob;
         return $this;
     }
 
