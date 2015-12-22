@@ -29,7 +29,7 @@ class Person extends ArrayCollection
      */
     public function append(PersonEntity $person)
     {
-        parent::add($person);
+        $this->add($person);
     }
 
     /**
