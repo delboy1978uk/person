@@ -3,6 +3,7 @@
 namespace Del\Entity;
 
 use DateTime;
+use Del\Factory\CountryFactory;
 
 /**
  * @Entity(repositoryClass="\Del\Repository\Person")
@@ -59,20 +60,20 @@ class Person
     }
 
     /**
-     * @return string
+     * @return Country
      */
     public function getCountry()
     {
-        return $this->country;
+        return CountryFactory::generate($this->country);
     }
 
     /**
-     * @param string $country
+     * @param Country $country
      * @return Person
      */
-    public function setCountry($country)
+    public function setCountry(Country $country)
     {
-        $this->country = $country;
+        $this->country = $country->getId();
         return $this;
     }
 

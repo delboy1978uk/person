@@ -4,9 +4,81 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "94a05908704b777a7c06bcbf5e978be8",
-    "content-hash": "a201c3dc4591ea63f93658eb8c2a7fb5",
+    "hash": "237a76b4eae0d91d8f22f6c96619c8d1",
+    "content-hash": "90d5e5ee2fa8b05b9b42d9e6fea90045",
     "packages": [
+        {
+            "name": "delboy1978uk/country",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/delboy1978uk/country.git",
+                "reference": "ed4a02008cfa148848b78b8113cb50a788bf54ed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/delboy1978uk/country/zipball/ed4a02008cfa148848b78b8113cb50a788bf54ed",
+                "reference": "ed4a02008cfa148848b78b8113cb50a788bf54ed",
+                "shasum": ""
+            },
+            "require": {
+                "delboy1978uk/image": "1.0.1"
+            },
+            "require-dev": {
+                "codeception/codeception": "2.1.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Del\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Derek Stephen McLean",
+                    "email": "delboy1978uk@gmail.com"
+                }
+            ],
+            "description": "A PHP library of countries and flags.",
+            "time": "2015-10-30 17:48:17"
+        },
+        {
+            "name": "delboy1978uk/image",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/delboy1978uk/image.git",
+                "reference": "0b1dc190db18ba46832d03d8754dcc98f8dac98e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/delboy1978uk/image/zipball/0b1dc190db18ba46832d03d8754dcc98f8dac98e",
+                "reference": "0b1dc190db18ba46832d03d8754dcc98f8dac98e",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Del\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Derek McLean",
+                    "email": "delboy1978uk@gmail.com"
+                }
+            ],
+            "description": "PHP image class",
+            "time": "2015-07-19 00:28:39"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.2.7",

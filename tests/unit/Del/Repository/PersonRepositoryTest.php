@@ -4,7 +4,9 @@ namespace Del\Repository;
 
 use Codeception\TestCase\Test;
 use DateTime;
+use Del\Entity\Country;
 use Del\Entity\Person as PersonEntity;
+use Del\Factory\CountryFactory;
 use Del\Repository\Person as PersonRepository;
 use DelTesting\DelTesting;
 
@@ -33,6 +35,7 @@ class PersonRepositoryTest extends Test
 
     public function testPersistAndRetrievePerson()
     {
+        $country = CountryFactory::generate('GBR');
         $person = new PersonEntity();
         $person->setFirstname('Derek');
         $person->setMiddlename('Stephen');
@@ -40,7 +43,7 @@ class PersonRepositoryTest extends Test
         $person->setAka('Delboy');
         $person->setDob(new DateTime('1978-02-17'));
         $person->setBirthplace('Glasgow');
-        $person->setCountry('GBR');
+        $person->setCountry($country);
 
         /** @var PersonEntity $person */
         $person = $this->db->save($person);
@@ -54,7 +57,7 @@ class PersonRepositoryTest extends Test
         $this->assertEquals('Delboy',$person->getAka());
         $this->assertEquals('1978-02-17',$person->getDob()->format('Y-m-d'));
         $this->assertEquals('Glasgow',$person->getBirthplace());
-        $this->assertEquals('GBR',$person->getCountry());
+        $this->assertEquals('GBR',$person->getCountry()->getId());
 
         $this->db->delete($person);
         $this->assertNull($this->db->find($id));

@@ -4,10 +4,11 @@ namespace Del\Repository;
 
 use Codeception\TestCase\Test;
 use DateTime;
+use Del\Factory\CountryFactory;
 use Del\Service\Person as PersonService;
 use DelTesting\DelTesting;
 
-class PersonServiceest extends Test
+class PersonServiceTest extends Test
 {
    /**
     * @var \UnitTester
@@ -41,7 +42,7 @@ class PersonServiceest extends Test
         $this->assertEquals('Delboy', $person->getAka());
         $this->assertEquals('1978-02-17', $person->getDob()->format('Y-m-d'));
         $this->assertEquals('Glasgow', $person->getBirthplace());
-        $this->assertEquals('GBR', $person->getCountry());
+        $this->assertEquals('GBR', $person->getCountry()->getId());
     }
 
     public function testToArray()
@@ -85,7 +86,7 @@ class PersonServiceest extends Test
             'aka' => 'Delboy',
             'dob' => new DateTime('1978-02-17'),
             'birthplace' => 'Glasgow',
-            'country' => 'GBR',
+            'country' => CountryFactory::generate('GBR'),
         ];
     }
 

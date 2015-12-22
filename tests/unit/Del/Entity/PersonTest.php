@@ -3,6 +3,7 @@
 namespace Del\Entity;
 
 use DateTime;
+use Del\Factory\CountryFactory;
 
 class PersonTest extends \Codeception\TestCase\Test
 {
@@ -36,8 +37,10 @@ class PersonTest extends \Codeception\TestCase\Test
 
     public function testGetSetCountry()
     {
-        $this->person->setCountry('GBR');
-        $this->assertEquals('GBR',$this->person->getCountry());
+        $country = CountryFactory::generate('GBR');
+        $this->person->setCountry($country);
+        $this->assertInstanceOf('Del\Entity\Country',$this->person->getCountry());
+        $this->assertEquals('GBR',$this->person->getCountry()->getId());
     }
 
     public function testGetSetFirstname()
