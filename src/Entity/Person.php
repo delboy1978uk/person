@@ -26,7 +26,7 @@ class Person
     /** @Column(type="string",length=60,nullable=true) */
     private $lastname;
 
-    /** @Column(type="string",length=60,nullable=true) */
+    /** @Column(type="string",length=50,nullable=true) */
     private $aka;
 
     /**

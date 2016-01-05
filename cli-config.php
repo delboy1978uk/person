@@ -24,11 +24,16 @@ $em = $container['doctrine.entity_manager'];
 
 // Create the helperset
 $helperSet = ConsoleRunner::createHelperSet($em);
+$helperSet->set(new \Symfony\Component\Console\Helper\DialogHelper(),'dialog');
+
+
 
 /** Migrations setup */
 
 $configuration = new Configuration($em->getConnection());
 $configuration->setMigrationsDirectory('migrations');
+$configuration->setMigrationsNamespace('migrations');
+
 
 $diff = new DiffCommand();
 $exec = new ExecuteCommand();
@@ -38,7 +43,11 @@ $status = new StatusCommand();
 $ver = new VersionCommand();
 
 $diff->setMigrationConfiguration($configuration);
-
+$exec->setMigrationConfiguration($configuration);
+$gen->setMigrationConfiguration($configuration);
+$migrate->setMigrationConfiguration($configuration);
+$status->setMigrationConfiguration($configuration);
+$ver->setMigrationConfiguration($configuration);
 
 $cli = ConsoleRunner::createApplication($helperSet,[
     $diff, $exec, $gen, $migrate, $status, $ver
