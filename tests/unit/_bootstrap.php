@@ -4,12 +4,17 @@ ini_set('xdebug.var_display_max_depth', 10);
 ini_set('xdebug.var_display_max_children', 256);
 ini_set('xdebug.var_display_max_data', 1024);
 
-$container['db.credentials'] = [
-    'driver' => 'pdo_mysql',
-    'dbname' => 'delboy1978uk',
-    'user' => 'dbuser',
-    'password' => '[123456]',
-];
+use Del\Config\Container\Person as PersonConfig;
+use Del\Common\ContainerService;
+use Del\Common\Config\DbCredentials;
 
-return $container;
+
+$containerService = ContainerService::getInstance();
+
+$db = new DbCredentials();
+$config = new PersonConfig();
+$containerService->registerToContainer($db);
+$containerService->registerToContainer($config);
+
+
 

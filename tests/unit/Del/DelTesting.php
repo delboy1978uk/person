@@ -1,7 +1,8 @@
 <?php
 namespace DelTesting;
 
-use Del\Container;
+use Del\Common\ContainerService;
+use Del\Common\DbCredentials;
 use Pimple\Container as PimpleContainer;
 
 class DelTesting
@@ -11,8 +12,9 @@ class DelTesting
      */
     public static function getContainer()
     {
-        $container = Container::getContainer();
-        $container = include __DIR__ . '/../_bootstrap.php';
-        return $container;
+        return ContainerService::getInstance()
+        ->setDbCredentials(new DbCredentials())
+        ->addEntityPath('src/Entity')
+        ->getContainer();
     }
 }

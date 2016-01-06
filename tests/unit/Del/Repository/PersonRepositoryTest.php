@@ -4,11 +4,11 @@ namespace Del\Repository;
 
 use Codeception\TestCase\Test;
 use DateTime;
+use Del\Common\ContainerService;
 use Del\Entity\Country;
 use Del\Entity\Person as PersonEntity;
 use Del\Factory\CountryFactory;
 use Del\Repository\Person as PersonRepository;
-use DelTesting\DelTesting;
 
 class PersonRepositoryTest extends Test
 {
@@ -24,7 +24,7 @@ class PersonRepositoryTest extends Test
 
     protected function _before()
     {
-        $container = DelTesting::getContainer();
+        $container = ContainerService::getInstance()->getContainer();
         $this->db = $container['repository.person'];
     }
 

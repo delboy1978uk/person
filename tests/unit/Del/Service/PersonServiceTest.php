@@ -6,7 +6,8 @@ use Codeception\TestCase\Test;
 use DateTime;
 use Del\Factory\CountryFactory;
 use Del\Service\Person as PersonService;
-use DelTesting\DelTesting;
+use Del\Common\ContainerService;
+use Del\Common\DbCredentials;
 
 class PersonServiceTest extends Test
 {
@@ -22,7 +23,8 @@ class PersonServiceTest extends Test
 
     protected function _before()
     {
-        $container = DelTesting::getContainer();
+        $container = ContainerService::getInstance()
+            ->getContainer();
         $this->svc = new PersonService($container['doctrine.entity_manager']);
     }
 
