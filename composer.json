@@ -9,10 +9,8 @@
         }
     ],
     "require": {
-        "delboy1978uk/country": "1.0.0",
-        "doctrine/orm": "2.5.1",
-        "doctrine/migrations": "1.1.0",
-        "pimple/pimple": "3.0.2"
+	"delboy1978uk/common": "2.*",
+        "delboy1978uk/country": "1.0.0"
     },
     "require-dev":{
         "codeception/codeception": "2.1.3"
