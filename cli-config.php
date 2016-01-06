@@ -71,7 +71,7 @@ use Del\Common\DbCredentials;
 
 $credentials = new DbCredentials();
 $container = ContainerService::getInstance()
-    ->setDbCredentials($credentials->toArray())
+    ->setDbCredentials($credentials)
     ->addEntityPath('src/Entity')
     ->getContainer();
 
