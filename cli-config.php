@@ -67,7 +67,7 @@ use Doctrine\DBAL\Migrations\Tools\Console\Command\VersionCommand;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 
 use Del\Common\ContainerService;
-use Del\Common\DbCredentials;
+use Del\Common\Config\DbCredentials;
 
 $credentials = new DbCredentials();
 $container = ContainerService::getInstance()
