@@ -9,16 +9,16 @@
     "packages": [
         {
             "name": "delboy1978uk/common",
-            "version": "v2.0.0",
+            "version": "v2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/delboy1978uk/common.git",
-                "reference": "e9d9a3794578f6e76469b413390c3eee79b2c864"
+                "reference": "c8a1cacbb443334498b2d83877d2a5affd39b5c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/delboy1978uk/common/zipball/e9d9a3794578f6e76469b413390c3eee79b2c864",
-                "reference": "e9d9a3794578f6e76469b413390c3eee79b2c864",
+                "url": "https://api.github.com/repos/delboy1978uk/common/zipball/c8a1cacbb443334498b2d83877d2a5affd39b5c8",
+                "reference": "c8a1cacbb443334498b2d83877d2a5affd39b5c8",
                 "shasum": ""
             },
             "require": {
@@ -50,7 +50,7 @@
                 }
             ],
             "description": "Stuff that winds up in every project",
-            "time": "2016-01-06 04:11:38"
+            "time": "2016-01-07 04:01:29"
         },
         {
             "name": "delboy1978uk/country",
