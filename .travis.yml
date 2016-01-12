@@ -34,7 +34,7 @@ before_script:
   - mysql -e "USE mysql;\n" -uroot
   - mysql -e "GRANT ALL PRIVILEGES ON *.* TO dbuser@'%' IDENTIFIED BY '[123456]';\n" -uroot
   - mysql -e "FLUSH PRIVILEGES;\n" -uroot
-  - migrant migrate
+  - migrant migrate --no-interaction
 script:
   - php vendor/bin/codecept run unit --coverage-xml --env travis
 
