@@ -25,4 +25,6 @@ class Person extends EntityRepository
         $this->_em->remove($person);
         $this->_em->flush();
     }
+
+
 }
