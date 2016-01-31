@@ -2,6 +2,7 @@
 
 namespace Del\Service;
 
+use Del\Criteria\PersonCriteria;
 use Del\Entity\Person as PersonEntity;
 use Del\Repository\Person as PersonRepository;
 use Doctrine\ORM\EntityManager;
@@ -61,6 +62,15 @@ class Person
     public function savePerson(PersonEntity $person)
     {
         return $this->getRepository()->save($person);
+    }
+
+    /**
+     * @param PersonCriteria $criteria
+     * @return array
+     */
+    public function findByCriteria(PersonCriteria $criteria)
+    {
+        return $this->getRepository()->findByCriteria($criteria);
     }
 
    /**
