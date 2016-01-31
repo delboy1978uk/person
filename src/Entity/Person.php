@@ -41,6 +41,9 @@ class Person
     /** @var string */
     private $country;
 
+    /** @Column(type="string",length=50,nullable=true) */
+    private $image;
+
     /**
      * @return int
      */
@@ -184,4 +187,24 @@ class Person
         $this->birthplace = $birthplace;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string $image
+     * @return Person
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+        return $this;
+    }
+
+
 }
