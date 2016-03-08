@@ -65,6 +65,15 @@ class Person
     }
 
     /**
+     * @param PersonEntity $person
+     * @return PersonEntity
+     */
+    public function deletePerson(PersonEntity $person)
+    {
+        return $this->getRepository()->delete($person);
+    }
+
+    /**
      * @param PersonCriteria $criteria
      * @return array
      */

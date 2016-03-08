@@ -74,6 +74,7 @@ class PersonServiceTest extends Test
         $person->setAka('Pollito');
         $person = $this->svc->savePerson($person);
         $this->assertEquals('Pollito', $person->getAka());
+        $this->svc->deletePerson($person);
     }
 
     /**
