@@ -32,7 +32,7 @@ class PersonTest extends \Codeception\TestCase\Test
     public function testGetSetId()
     {
         $this->person->setId(100);
-	    $this->assertEquals(100,$this->person->getId());
+        $this->assertEquals(100,$this->person->getId());
     }
 
     public function testGetSetCountry()
