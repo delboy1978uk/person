@@ -145,21 +145,23 @@ class PersonServiceTest extends Test
         $this->assertInstanceOf('Del\Person\Entity\Person', $person);
 
         $criteria = new PersonCriteria();
-        $criteria->setBirthplace('Manchester');
+        $criteria->setBirthplace('Glasgow');
         $person = $this->svc->findOneByCriteria($criteria);
         $this->assertInstanceOf('Del\Person\Entity\Person', $person);
+
+        $this->svc->deletePerson($person);
 
         $criteria = new PersonCriteria();
         $criteria->setDob('1979-03-18');
         $person = $this->svc->findOneByCriteria($criteria);
         $this->assertInstanceOf('Del\Person\Entity\Person', $person);
 
+        $this->svc->deletePerson($person);
+
         $criteria = new PersonCriteria();
         $criteria->setCountry('JAM');
         $person = $this->svc->findOneByCriteria($criteria);
         $this->assertInstanceOf('Del\Person\Entity\Person', $person);
-
-
 
         $this->svc->deletePerson($person);
     }
