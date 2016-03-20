@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ee79b38572c9b0f4571330140462b00d",
+    "hash": "b41f7e5d69ff85a9fa286ed3a5028edc",
     "content-hash": "2b01bed29ec87fba35be10787d548416",
     "packages": [
         {
             "name": "delboy1978uk/common",
-            "version": "v2.1.7",
+            "version": "v2.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/delboy1978uk/common.git",
-                "reference": "4966ad3aed23115905d0b987f0838fe5d7ef1d14"
+                "reference": "30814e807737eb0ad3ee30806ddfbfcb4bf95eeb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/delboy1978uk/common/zipball/4966ad3aed23115905d0b987f0838fe5d7ef1d14",
-                "reference": "4966ad3aed23115905d0b987f0838fe5d7ef1d14",
+                "url": "https://api.github.com/repos/delboy1978uk/common/zipball/30814e807737eb0ad3ee30806ddfbfcb4bf95eeb",
+                "reference": "30814e807737eb0ad3ee30806ddfbfcb4bf95eeb",
                 "shasum": ""
             },
             "require": {
@@ -36,7 +36,8 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Del\\Common\\": "src/"
+                    "Del\\Common\\": "src/",
+                    "DelTesting\\": "tests/unit/Del/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -50,7 +51,7 @@
                 }
             ],
             "description": "Stuff that winds up in every project",
-            "time": "2016-01-12 04:15:55"
+            "time": "2016-02-20 16:05:30"
         },
         {
             "name": "delboy1978uk/country",

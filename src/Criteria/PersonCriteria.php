@@ -1,39 +1,19 @@
 <?php
 
-namespace Del\Criteria;
+namespace Del\Person\Criteria;
 
 use Del\Common\Criteria as CommonCriteria;
 
 
 class PersonCriteria extends CommonCriteria
 {
-    const ORDER_FIRSTNAME_ASC        = 'firstname_asc';
-    const ORDER_FIRSTNAME_DESC       = 'firstname_desc';
-    const ORDER_FIRSTNAME            = 'firstname';
-
-    const ORDER_MIDDLENAME_ASC        = 'middlename_asc';
-    const ORDER_MIDDLENAME_DESC       = 'middlename_desc';
+    const ORDER_FIRSTNAME             = 'firstname';
     const ORDER_MIDDLENAME            = 'middlename';
-
-    const ORDER_LASTNAME_ASC        = 'firstname_asc';
-    const ORDER_LASTNAME_DESC       = 'firstname_desc';
-    const ORDER_LASTNAME            = 'state';
-
-    const ORDER_AKA_ASC        = 'aka_asc';
-    const ORDER_AKA_DESC       = 'aka_desc';
-    const ORDER_AKA            = 'aka';
-
-    const ORDER_BIRTHPLACE_ASC        = 'birthplace_asc';
-    const ORDER_BIRTHPLACE_DESC       = 'birthplace_desc';
+    const ORDER_LASTNAME              = 'state';
+    const ORDER_AKA                   = 'aka';
     const ORDER_BIRTHPLACE            = 'birthplace';
-
-    const ORDER_COUNTRY_ASC        = 'country_asc';
-    const ORDER_COUNTRY_DESC       = 'country_desc';
-    const ORDER_COUNTRY            = 'country';
-
-    const ORDER_DOB_ASC        = 'dob_asc';
-    const ORDER_DOB_DESC       = 'dob_desc';
-    const ORDER_DOB            = 'dob';
+    const ORDER_COUNTRY               = 'country';
+    const ORDER_DOB                   = 'dob';
 
     protected $id;
     protected $firstname;
@@ -251,7 +231,5 @@ class PersonCriteria extends CommonCriteria
     {
         return $this->dob != null;
     }
-
-
 
 }

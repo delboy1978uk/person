@@ -1,12 +1,12 @@
 <?php
 
-namespace Del\Collection;
+namespace Del\Person\Collection;
 
-use Del\Entity\Person as PersonEntity;
+use Del\Person\Entity\Person as PersonEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use LogicException;
 
-class Person extends ArrayCollection
+class PersonCollection extends ArrayCollection
 {
     /**
      * @param PersonEntity $person

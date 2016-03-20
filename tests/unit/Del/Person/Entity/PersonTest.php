@@ -1,9 +1,10 @@
 <?php
 
-namespace Del\Entity;
+namespace DelTesting\Entity;
 
 use DateTime;
 use Del\Factory\CountryFactory;
+use Del\Person\Entity\Person;
 
 class PersonTest extends \Codeception\TestCase\Test
 {
@@ -77,5 +78,11 @@ class PersonTest extends \Codeception\TestCase\Test
     {
         $this->person->setBirthplace('Glasgow');
         $this->assertEquals('Glasgow',$this->person->getBirthplace());
+    }
+
+    public function testGetSetImage()
+    {
+        $this->person->setImage('photo.jpg');
+        $this->assertEquals('photo.jpg',$this->person->getImage());
     }
 }

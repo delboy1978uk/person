@@ -1,9 +1,4 @@
 <?php
-/**
- * User: delboy1978uk
- * Date: 29/10/15
- * Time: 20:55
- */
 
 namespace DelTesting\Driver;
 

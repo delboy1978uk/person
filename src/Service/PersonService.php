@@ -1,30 +1,30 @@
 <?php
 
-namespace Del\Service;
+namespace Del\Person\Service;
 
-use Del\Criteria\PersonCriteria;
-use Del\Entity\Person as PersonEntity;
-use Del\Repository\Person as PersonRepository;
+use Del\Person\Criteria\PersonCriteria;
+use Del\Person\Entity\Person;
+use Del\Person\Repository\Person as PersonRepository;
 use Doctrine\ORM\EntityManager;
 use Pimple\Container;
 
-class Person
+class PersonService
 {
     /** @var EntityManager $em */
     protected $em;
 
-    public function __construct(EntityManager $em)
+    public function __construct(Container $c)
     {
-        $this->em = $em;
+        $this->em = $c['doctrine.entity_manager'];
     }
 
    /** 
     * @param array $data
-    * @return PersonEntity
+    * @return Person
     */
     public function createFromArray(array $data)
     {
-        $person = new PersonEntity();
+        $person = new Person();
         isset($data['id']) ? $person->setId($data['id']) : null;
         isset($data['firstname']) ? $person->setFirstname($data['firstname']) : null;
         isset($data['middlename']) ? $person->setMiddlename($data['middlename']) : null;
@@ -37,10 +37,10 @@ class Person
     }
 
     /**
-     * @param array $person
-     * @return PersonEntity
+     * @param Person $person
+     * @return array
      */
-    public function toArray(PersonEntity $person)
+    public function toArray(Person $person)
     {
         $data = [
             'id' => $person->getId(),
@@ -56,30 +56,40 @@ class Person
     }
 
     /**
-     * @param PersonEntity $person
-     * @return PersonEntity
+     * @param Person $person
+     * @return Person
      */
-    public function savePerson(PersonEntity $person)
+    public function savePerson(Person $person)
     {
         return $this->getRepository()->save($person);
     }
 
     /**
-     * @param PersonEntity $person
-     * @return PersonEntity
+     * @param Person $person
+     * @return Person
      */
-    public function deletePerson(PersonEntity $person)
+    public function deletePerson(Person $person)
     {
-        return $this->getRepository()->delete($person);
+        $this->getRepository()->delete($person);
     }
 
     /**
      * @param PersonCriteria $criteria
-     * @return array
+     * @return Person[]
      */
     public function findByCriteria(PersonCriteria $criteria)
     {
         return $this->getRepository()->findByCriteria($criteria);
+    }
+
+    /**
+     * @param PersonCriteria $criteria
+     * @return Person|null
+     */
+    public function findOneByCriteria(PersonCriteria $criteria)
+    {
+        $results = $this->findByCriteria($criteria);
+        return (isset($results[0])) ? $results[0] : null;
     }
 
    /**
@@ -87,6 +97,6 @@ class Person
     */
     protected function getRepository()
     {
-        return $this->em->getRepository('Del\Entity\Person');
+        return $this->em->getRepository('Del\Person\Entity\Person');
     }
 }

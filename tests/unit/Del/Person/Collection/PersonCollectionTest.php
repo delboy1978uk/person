@@ -1,10 +1,10 @@
 <?php
 
-namespace Del\Repository;
+namespace DelTesting\Repository;
 
 use Codeception\TestCase\Test;
-use Del\Collection\Person as People;
-use Del\Entity\Person;
+use Del\Person\Collection\PersonCollection as People;
+use Del\Person\Entity\Person;
 
 class PersonPeopleTest extends Test
 {
@@ -54,7 +54,7 @@ class PersonPeopleTest extends Test
         $collection->append($person);
 
         $person = $collection->findById(2);
-        $this->assertInstanceOf('Del\Entity\Person',$person);
+        $this->assertInstanceOf('Del\Person\Entity\Person',$person);
     }
 
     public function testFindByIdReturnsFalse()

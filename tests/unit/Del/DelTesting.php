@@ -2,7 +2,7 @@
 namespace DelTesting;
 
 use Del\Common\ContainerService;
-use Del\Common\DbCredentials;
+use Del\Common\Config\DbCredentials;
 use Pimple\Container as PimpleContainer;
 
 class DelTesting

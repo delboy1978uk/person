@@ -1,12 +1,13 @@
 <?php
 
-namespace Del\Entity;
+namespace Del\Person\Entity;
 
 use DateTime;
+use Del\Entity\Country;
 use Del\Factory\CountryFactory;
 
 /**
- * @Entity(repositoryClass="\Del\Repository\Person")
+ * @Entity(repositoryClass="\Del\Person\Repository\PersonRepository")
  */
 class Person
 {
@@ -38,7 +39,10 @@ class Person
     /** @Column(type="string",length=50,nullable=true) */
     private $birthplace;
 
-    /** @var string */
+    /**
+     * @var string $country
+     * @Column(type="string",length=3,nullable=true)
+     */
     private $country;
 
     /** @Column(type="string",length=50,nullable=true) */
