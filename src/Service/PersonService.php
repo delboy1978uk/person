@@ -4,7 +4,7 @@ namespace Del\Person\Service;
 
 use Del\Person\Criteria\PersonCriteria;
 use Del\Person\Entity\Person;
-use Del\Person\Repository\Person as PersonRepository;
+use Del\Person\Repository\PersonRepository;
 use Doctrine\ORM\EntityManager;
 use Pimple\Container;
 

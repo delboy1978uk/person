@@ -9,7 +9,7 @@
     }
   ],
   "require": {
-    "delboy1978uk/common": "2.*",
+    "delboy1978uk/common": "^2.3",
     "delboy1978uk/country": "1.0.0"
   },
   "require-dev": {
