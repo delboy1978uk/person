@@ -12,8 +12,11 @@ class DelTesting
      */
     public static function getContainer()
     {
+        $array = require_once
+        $creds = new DbCredentials();
+
         return ContainerService::getInstance()
-        ->setDbCredentials(new DbCredentials())
+        ->setDbCredentials($creds)
         ->addEntityPath('src/Entity')
         ->getContainer();
     }
