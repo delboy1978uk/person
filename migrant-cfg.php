@@ -1,3 +1,5 @@
+<?php
+
 return [
     'db' => [
         'driver' => 'pdo_mysql',
