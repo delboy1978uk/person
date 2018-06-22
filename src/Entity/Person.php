@@ -5,47 +5,48 @@ namespace Del\Person\Entity;
 use DateTime;
 use Del\Entity\Country;
 use Del\Factory\CountryFactory;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @Entity(repositoryClass="\Del\Person\Repository\PersonRepository")
+ * @ORM\Entity(repositoryClass="\Del\Person\Repository\PersonRepository")
  */
 class Person
 {
     /**
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue
      */
     private $id;
 
-    /** @Column(type="string",length=60,nullable=true) */
+    /** @ORM\Column(type="string",length=60,nullable=true) */
     private $firstname;
 
-    /** @Column(type="string",length=60,nullable=true) */
+    /** @ORM\Column(type="string",length=60,nullable=true) */
     private $middlename;
 
-    /** @Column(type="string",length=60,nullable=true) */
+    /** @ORM\Column(type="string",length=60,nullable=true) */
     private $lastname;
 
-    /** @Column(type="string",length=50,nullable=true) */
+    /** @ORM\Column(type="string",length=50,nullable=true) */
     private $aka;
 
     /**
-     * @Column(type="date",nullable=true)
+     * @ORM\Column(type="date",nullable=true)
      * @var DateTime
      */
     private $dob;
 
-    /** @Column(type="string",length=50,nullable=true) */
+    /** @ORM\Column(type="string",length=50,nullable=true) */
     private $birthplace;
 
     /**
      * @var string $country
-     * @Column(type="string",length=3,nullable=true)
+     * @ORM\Column(type="string",length=3,nullable=true)
      */
     private $country;
 
-    /** @Column(type="string",length=50,nullable=true) */
+    /** @ORM\Column(type="string",length=50,nullable=true) */
     private $image;
 
     /**

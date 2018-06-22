@@ -6,6 +6,8 @@ use Del\Common\ContainerService;
 use Del\Common\Config\DbCredentials;
 
 $credentials = new DbCredentials();
+$credentials->setDriver('pdo_sqlite');
+
 $container = ContainerService::getInstance()
     ->setDbCredentials($credentials)
     ->addEntityPath('src/Entity')
