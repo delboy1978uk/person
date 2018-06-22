@@ -2,7 +2,7 @@
 
 return [
     'db' => [
-        'driver' => 'pdo_sqlite',
+        'driver' => 'pdo_mysql',
         'host' => 'localhost',
         'dbname' => 'delboy1978uk',
         'user' => 'dbuser',
