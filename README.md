@@ -49,7 +49,7 @@ $svc->toArray($person); // Pass a Person, receive an array
 $svc->savePerson($person); // Saves a Person (adds or updates) to the database
 $svc->getRepository(); // Gets the Person Repository
 $svc->findByCriteria($criteria); // Finds results based upon your Criteria (see below)
-$svc->findOneByCriteria()$criteria; // As above but for a single result
+$svc->findOneByCriteria($criteria); // As above but for a single result
 ```
 ##The Person Criteria
 Set the criteria for your searches using this object.
