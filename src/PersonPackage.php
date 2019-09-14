@@ -4,7 +4,7 @@ namespace Del\Person;
 
 use Del\Common\Container\RegistrationInterface;
 use Del\Person\Service\PersonService;
-use Pimple\Container;
+use Barnacle\Container;
 
 class PersonPackage implements RegistrationInterface
 {

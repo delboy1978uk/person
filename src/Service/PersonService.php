@@ -6,7 +6,7 @@ use Del\Person\Criteria\PersonCriteria;
 use Del\Person\Entity\Person;
 use Del\Person\Repository\PersonRepository;
 use Doctrine\ORM\EntityManager;
-use Pimple\Container;
+use Barnacle\Container;
 
 class PersonService
 {
