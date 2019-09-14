@@ -3,20 +3,19 @@ namespace DelTesting;
 
 use Del\Common\ContainerService;
 use Del\Common\Config\DbCredentials;
-use Pimple\Container as PimpleContainer;
+use Barnacle\Container as PimpleContainer;
 
 class DelTesting
 {
     /**
-     * @return PimpleContainer
+     * @throws \Doctrine\ORM\ORMException
      */
     public static function getContainer()
     {
-        $array = require_once
         $creds = new DbCredentials();
 
-        return ContainerService::getInstance()
-        ->setDbCredentials($creds)
+        $containerSvc =  ContainerService::getInstance();
+        $containerSvc->setDbCredentials($creds)
         ->addEntityPath('src/Entity')
         ->getContainer();
     }

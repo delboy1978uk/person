@@ -15,6 +15,8 @@ class PersonRepository extends EntityRepository
     /**
      * @param PersonEntity $person
      * @return PersonEntity
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function save(PersonEntity $person)
     {
@@ -25,6 +27,8 @@ class PersonRepository extends EntityRepository
 
     /**
      * @param PersonEntity $person
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function delete(PersonEntity $person)
     {

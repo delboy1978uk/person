@@ -23,6 +23,9 @@ class PersonServiceTest extends Test
      */
     protected $svc;
 
+    /**
+     * @throws \Doctrine\ORM\ORMException
+     */
     protected function _before()
     {
         $db = new DbCredentials();
@@ -31,7 +34,7 @@ class PersonServiceTest extends Test
         $containerService->registerToContainer($db);
         $containerService->registerToContainer($package);
         $container = $containerService->getContainer();
-        $this->svc = $container['service.person'];
+        $this->svc = $container[PersonService::class];
     }
 
     protected function _after()
