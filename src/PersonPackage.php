@@ -5,6 +5,7 @@ namespace Del\Person;
 use Del\Common\Container\RegistrationInterface;
 use Del\Person\Service\PersonService;
 use Barnacle\Container;
+use Doctrine\ORM\EntityManager;
 
 class PersonPackage implements RegistrationInterface
 {
@@ -13,8 +14,10 @@ class PersonPackage implements RegistrationInterface
      */
     public function addToContainer(Container $c)
     {
-        $function = function($c) {
-            return new PersonService($c);
+        $function = function(Container $c) {
+            $entityManager = $c->get(EntityManager::class);
+            
+            return new PersonService($entityManager);
         };
 
         $c[PersonService::class] = $c->factory($function);
