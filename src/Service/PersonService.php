@@ -13,16 +13,20 @@ class PersonService
     /** @var EntityManager $em */
     protected $em;
 
-    public function __construct(Container $c)
+    /**
+     * PersonService constructor.
+     * @param EntityManager $entityManager
+     */
+    public function __construct(EntityManager $entityManager)
     {
-        $this->em = $c['doctrine.entity_manager'];
+        $this->em = $entityManager;
     }
 
    /** 
     * @param array $data
     * @return Person
     */
-    public function createFromArray(array $data)
+    public function createFromArray(array $data): Person
     {
         $person = new Person();
         isset($data['id']) ? $person->setId($data['id']) : null;
@@ -33,6 +37,7 @@ class PersonService
         isset($data['dob']) ? $person->setDob($data['dob']) : null;
         isset($data['birthplace']) ? $person->setBirthplace($data['birthplace']) : null;
         isset($data['country']) ? $person->setCountry($data['country']) : null;
+
         return $person;
     }
 
@@ -40,7 +45,7 @@ class PersonService
      * @param Person $person
      * @return array
      */
-    public function toArray(Person $person)
+    public function toArray(Person $person): array
     {
         $data = [
             'id' => $person->getId(),
@@ -59,16 +64,15 @@ class PersonService
      * @param Person $person
      * @return Person
      */
-    public function savePerson(Person $person)
+    public function savePerson(Person $person): Person
     {
         return $this->getRepository()->save($person);
     }
 
     /**
      * @param Person $person
-     * @return Person
      */
-    public function deletePerson(Person $person)
+    public function deletePerson(Person $person): void
     {
         $this->getRepository()->delete($person);
     }
@@ -92,11 +96,11 @@ class PersonService
         return (isset($results[0])) ? $results[0] : null;
     }
 
-   /**
-    * @return PersonRepository
-    */
+    /**
+     * @return \Doctrine\Common\Persistence\ObjectRepository|\Doctrine\ORM\EntityRepository
+     */
     protected function getRepository()
     {
-        return $this->em->getRepository('Del\Person\Entity\Person');
+        return $this->em->getRepository(Person::class);
     }
 }

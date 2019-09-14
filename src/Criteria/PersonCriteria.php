@@ -7,13 +7,13 @@ use Del\Common\Criteria as CommonCriteria;
 
 class PersonCriteria extends CommonCriteria
 {
-    const ORDER_FIRSTNAME             = 'firstname';
-    const ORDER_MIDDLENAME            = 'middlename';
-    const ORDER_LASTNAME              = 'state';
-    const ORDER_AKA                   = 'aka';
-    const ORDER_BIRTHPLACE            = 'birthplace';
-    const ORDER_COUNTRY               = 'country';
-    const ORDER_DOB                   = 'dob';
+    const ORDER_FIRSTNAME = 'firstname';
+    const ORDER_MIDDLENAME = 'middlename';
+    const ORDER_LASTNAME = 'state';
+    const ORDER_AKA = 'aka';
+    const ORDER_BIRTHPLACE = 'birthplace';
+    const ORDER_COUNTRY = 'country';
+    const ORDER_DOB = 'dob';
 
     protected $id;
     protected $firstname;
@@ -38,7 +38,7 @@ class PersonCriteria extends CommonCriteria
      */
     public function setId($id)
     {
-        $this->id = (int) $id;
+        $this->id = (int)$id;
         return $this;
     }
 
@@ -231,5 +231,4 @@ class PersonCriteria extends CommonCriteria
     {
         return $this->dob != null;
     }
-
 }

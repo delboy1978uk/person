@@ -210,6 +210,4 @@ class Person
         $this->image = $image;
         return $this;
     }
-
-
 }

@@ -16,10 +16,9 @@ class PersonCollection extends ArrayCollection
     {
         $key = $this->findKey($person);
         if($key) {
-
             $this->offsetSet($key,$person);
-            return $this;
 
+            return $this;
         }
         throw new LogicException('Person was not in the collection.');
     }
@@ -57,8 +56,10 @@ class PersonCollection extends ArrayCollection
         return false;
     }
 
-
-
+    /**
+     * @param $id
+     * @return bool|mixed
+     */
     public function findById($id)
     {
         $it = $this->getIterator();
@@ -72,5 +73,4 @@ class PersonCollection extends ArrayCollection
 
         return false;
     }
-
 }

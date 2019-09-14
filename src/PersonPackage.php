@@ -14,17 +14,16 @@ class PersonPackage implements RegistrationInterface
     public function addToContainer(Container $c)
     {
         $function = function($c) {
-            $svc = new PersonService($c);
-            return $svc;
+            return new PersonService($c);
         };
 
-        $c['service.person'] = $c->factory($function);
+        $c[PersonService::class] = $c->factory($function);
     }
 
     /**
      * @return string
      */
-    public function getEntityPath()
+    public function getEntityPath(): string
     {
         return 'vendor/delboy1978uk/person/src/Entity';
     }
@@ -32,7 +31,7 @@ class PersonPackage implements RegistrationInterface
     /**
      * @return bool
      */
-    public function hasEntityPath()
+    public function hasEntityPath(): bool
     {
         return true;
     }
