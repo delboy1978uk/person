@@ -16,7 +16,7 @@ class PersonPackage implements RegistrationInterface
     {
         $function = function(Container $c) {
             $entityManager = $c->get(EntityManager::class);
-            
+
             return new PersonService($entityManager);
         };
 

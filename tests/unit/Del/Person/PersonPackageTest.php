@@ -5,11 +5,15 @@ namespace DelTesting\Person;
 use Del\Common\ContainerService;
 use Del\Common\Config\DbCredentials;
 use Del\Person\PersonPackage;
+use Del\Person\Service\PersonService;
 
 class PersonPackageTest extends \Codeception\TestCase\Test
 {
     private $container;
 
+    /**
+     * @throws \Doctrine\ORM\ORMException
+     */
     protected function _before()
     {
         $db = new DbCredentials();
@@ -27,8 +31,8 @@ class PersonPackageTest extends \Codeception\TestCase\Test
 
     public function testPersonServiceHasRegistered()
     {
-        $svc = $this->container['service.person'];
-        $this->assertInstanceOf('Del\Person\Service\PersonService', $svc);
+        $svc = $this->container[PersonService::class];
+        $this->assertInstanceOf(PersonService::class, $svc);
     }
 
 }
