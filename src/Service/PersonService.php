@@ -29,6 +29,17 @@ class PersonService
     public function createFromArray(array $data): Person
     {
         $person = new Person();
+
+        return $this->populateFromArray($person, $data);
+    }
+
+    /**
+     * @param Person $person
+     * @param array $data
+     * @return Person
+     */
+    public function populateFromArray(Person $person, array $data): Person
+    {
         isset($data['id']) ? $person->setId($data['id']) : null;
         isset($data['firstname']) ? $person->setFirstname($data['firstname']) : null;
         isset($data['middlename']) ? $person->setMiddlename($data['middlename']) : null;
@@ -37,6 +48,7 @@ class PersonService
         isset($data['dob']) ? $person->setDob($data['dob']) : null;
         isset($data['birthplace']) ? $person->setBirthplace($data['birthplace']) : null;
         isset($data['country']) ? $person->setCountry($data['country']) : null;
+        isset($data['image']) ? $person->setImage($data['image']) : null;
 
         return $person;
     }
