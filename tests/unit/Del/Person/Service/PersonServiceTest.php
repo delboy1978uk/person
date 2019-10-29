@@ -162,7 +162,7 @@ class PersonServiceTest extends Test
         $this->svc->deletePerson($person);
 
         $criteria = new PersonCriteria();
-        $criteria->setCountry('JAM');
+        $criteria->setCountry('JM');
         $person = $this->svc->findOneByCriteria($criteria);
         $this->assertInstanceOf('Del\Person\Entity\Person', $person);
 
