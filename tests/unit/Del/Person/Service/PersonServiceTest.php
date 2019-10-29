@@ -96,7 +96,7 @@ class PersonServiceTest extends Test
             'aka' => 'Delboy',
             'dob' => new DateTime('1978-02-17'),
             'birthplace' => 'Glasgow',
-            'country' => CountryFactory::generate('GBR'),
+            'country' => CountryFactory::generate('GB'),
         ]);
         $this->svc->savePerson($person);
 
@@ -107,7 +107,7 @@ class PersonServiceTest extends Test
             'aka' => 'Nobody',
             'dob' => new DateTime('1979-03-18'),
             'birthplace' => 'Manchester',
-            'country' => CountryFactory::generate('GBR'),
+            'country' => CountryFactory::generate('GB'),
         ]);
         $this->svc->savePerson($person);
 
@@ -118,7 +118,7 @@ class PersonServiceTest extends Test
             'aka' => 'Someone',
             'dob' => new DateTime('1980-04-19'),
             'birthplace' => 'Kingston',
-            'country' => CountryFactory::generate('JAM'),
+            'country' => CountryFactory::generate('JA'),
         ]);
         $person = $this->svc->savePerson($person);
 
@@ -181,7 +181,7 @@ class PersonServiceTest extends Test
             'aka' => 'Delboy',
             'dob' => new DateTime('1978-02-17'),
             'birthplace' => 'Glasgow',
-            'country' => CountryFactory::generate('GBR'),
+            'country' => CountryFactory::generate('GB'),
         ];
     }
 

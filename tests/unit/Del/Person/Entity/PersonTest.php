@@ -38,7 +38,7 @@ class PersonTest extends \Codeception\TestCase\Test
 
     public function testGetSetCountry()
     {
-        $country = CountryFactory::generate('GBR');
+        $country = CountryFactory::generate('GB');
         $this->person->setCountry($country);
         $this->assertInstanceOf('Del\Entity\Country',$this->person->getCountry());
         $this->assertEquals('GBR',$this->person->getCountry()->getId());

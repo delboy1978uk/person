@@ -10,7 +10,7 @@
   ],
   "require": {
     "delboy1978uk/common": "^4.0",
-    "delboy1978uk/country": "^1.0"
+    "delboy1978uk/country": "^2.0"
   },
   "require-dev": {
     "codeception/codeception": "^2.3"
