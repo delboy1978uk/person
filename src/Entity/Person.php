@@ -68,11 +68,12 @@ class Person
     }
 
     /**
-     * @return Country
+     * @return Country|null
+     * @throws \Del\CountryException
      */
-    public function getCountry()
+    public function getCountry(): ?Country
     {
-        return CountryFactory::generate($this->country);
+        return $this->country ? CountryFactory::generate($this->country) : null;
     }
 
     /**
