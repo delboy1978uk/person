@@ -82,7 +82,7 @@ class Person
      */
     public function setCountry(Country $country)
     {
-        $this->country = $country->getId();
+        $this->country = $country->getIso();
         return $this;
     }
 
