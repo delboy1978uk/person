@@ -118,7 +118,7 @@ class PersonServiceTest extends Test
             'aka' => 'Someone',
             'dob' => new DateTime('1980-04-19'),
             'birthplace' => 'Kingston',
-            'country' => CountryFactory::generate('JA'),
+            'country' => CountryFactory::generate('JM'),
         ]);
         $person = $this->svc->savePerson($person);
 
