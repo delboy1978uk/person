@@ -4,6 +4,7 @@ php:
   - 7.1
   - 7.2
   - 7.3
+  - 7.4
 
 addons:
   hosts:
@@ -15,6 +16,7 @@ services:
   - mysql
 
 install:
+  - composer clearcache
   - composer install
 
 before_script:
