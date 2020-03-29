@@ -89,7 +89,7 @@ class PersonPeopleTest extends Test
         $this->assertEquals('Theodoric',$collection[1]->getFirstname());
         $person = new Person();
         $person->setId(4);
-        $this->setExpectedException('LogicException');
+        $this->expectException('LogicException');
         $collection->update($person);
     }
 
