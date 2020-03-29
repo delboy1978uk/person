@@ -17,8 +17,7 @@ services:
 
 install:
   - composer clearcache
-  - composer global clearcache
-  - composer install
+  - composer update
 
 before_script:
   - mysql -e "create database IF NOT EXISTS delboy1978uk;\n" -uroot
