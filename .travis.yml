@@ -16,7 +16,7 @@ services:
   - mysql
 
 install:
-  - composer clearcache
+  - rm -fr /home/travis/.composer/cache
   - composer install
 
 before_script:
