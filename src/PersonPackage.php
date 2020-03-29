@@ -2,12 +2,13 @@
 
 namespace Del\Person;
 
-use Del\Common\Container\RegistrationInterface;
-use Del\Person\Service\PersonService;
 use Barnacle\Container;
+use Barnacle\EntityRegistrationInterface;
+use Barnacle\RegistrationInterface;
+use Del\Person\Service\PersonService;
 use Doctrine\ORM\EntityManager;
 
-class PersonPackage implements RegistrationInterface
+class PersonPackage implements RegistrationInterface, EntityRegistrationInterface
 {
     /**
      * @param Container $c

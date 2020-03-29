@@ -13,7 +13,7 @@
     "delboy1978uk/country": "^2.0"
   },
   "require-dev": {
-    "codeception/codeception": "^2.3"
+    "codeception/codeception": "^4.0"
   },
   "autoload": {
     "psr-4": {
