@@ -68,6 +68,7 @@ class PersonService
             'dob' => $person->getDob(),
             'birthplace' => $person->getBirthplace(),
             'country' => $person->getCountry(),
+            'image' => $person->getImage(),
         ];
         return $data;
     }
