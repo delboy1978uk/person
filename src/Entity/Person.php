@@ -211,4 +211,15 @@ class Person
         $this->image = $image;
         return $this;
     }
+
+    /**
+     * @param bool $includeMiddleNames
+     * @return string
+     */
+    public function getFullName($includeMiddleNames = false): string
+    {
+        $middleName = $includeMiddleNames && $this->middlename ? ' ' . $this->middlename : '';
+
+        return $this->firstname . $middleName . ' ' . $this->lastname;
+    }
 }

@@ -6,6 +6,7 @@ use Del\Person\Entity\Person as PersonEntity;
 use Del\Person\Criteria\PersonCriteria;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
+use PDO;
 
 class PersonRepository extends EntityRepository
 {
@@ -71,7 +72,7 @@ class PersonRepository extends EntityRepository
     {
         if($criteria->hasId()) {
             $this->qb->where('p.id = :id');
-            $this->qb->setParameter('id', $criteria->getId());
+            $this->qb->setParameter('id', $criteria->getId(), PDO::PARAM_INT);
         }
     }
 
@@ -82,8 +83,8 @@ class PersonRepository extends EntityRepository
     private function checkFirstname(PersonCriteria $criteria)
     {
         if($criteria->hasFirstname()) {
-            $this->qb->where('p.firstname = :firstname');
-            $this->qb->setParameter('firstname', $criteria->getFirstname());
+            $this->qb->andWhere('p.firstname = :firstname');
+            $this->qb->setParameter('firstname', $criteria->getFirstname(), PDO::PARAM_STR);
         }
     }
 
@@ -94,8 +95,8 @@ class PersonRepository extends EntityRepository
     private function checkMiddlename(PersonCriteria $criteria)
     {
         if($criteria->hasMiddlename()) {
-            $this->qb->where('p.middlename = :middlename');
-            $this->qb->setParameter('middlename', $criteria->getMiddlename());
+            $this->qb->andWhere('p.middlename = :middlename');
+            $this->qb->setParameter('middlename', $criteria->getMiddlename(), PDO::PARAM_STR);
         }
     }
 
@@ -105,8 +106,8 @@ class PersonRepository extends EntityRepository
     private function checkLastname(PersonCriteria $criteria)
     {
         if($criteria->hasLastname()) {
-            $this->qb->where('p.lastname = :lastname');
-            $this->qb->setParameter('lastname', $criteria->getLastname());
+            $this->qb->andWhere('p.lastname = :lastname');
+            $this->qb->setParameter('lastname', $criteria->getLastname(), PDO::PARAM_STR);
         }
     }
 
@@ -117,7 +118,7 @@ class PersonRepository extends EntityRepository
     {
         if($criteria->hasAka()) {
             $this->qb->andWhere('p.aka = :aka');
-            $this->qb->setParameter('aka', $criteria->getAka());
+            $this->qb->setParameter('aka', $criteria->getAka(), PDO::PARAM_STR);
         }
     }
 
@@ -128,7 +129,7 @@ class PersonRepository extends EntityRepository
     {
         if($criteria->hasBirthplace()) {
             $this->qb->andWhere('p.birthplace = :birthplace');
-            $this->qb->setParameter('birthplace', $criteria->getBirthplace());
+            $this->qb->setParameter('birthplace', $criteria->getBirthplace(), PDO::PARAM_STR);
         }
     }
 
@@ -139,7 +140,7 @@ class PersonRepository extends EntityRepository
     {
         if($criteria->hasCountry()) {
             $this->qb->andWhere('p.country = :country');
-            $this->qb->setParameter('country', $criteria->getCountry());
+            $this->qb->setParameter('country', $criteria->getCountry(), PDO::PARAM_STR);
         }
     }
 
@@ -150,7 +151,7 @@ class PersonRepository extends EntityRepository
     {
         if($criteria->hasDob()) {
             $this->qb->andWhere('p.dob = :dob');
-            $this->qb->setParameter('dob', $criteria->getDob());
+            $this->qb->setParameter('dob', $criteria->getDob(), PDO::PARAM_STR);
         }
     }
 
