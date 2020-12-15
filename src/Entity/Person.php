@@ -6,11 +6,12 @@ use DateTime;
 use Del\Entity\Country;
 use Del\Factory\CountryFactory;
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 /**
  * @ORM\Entity(repositoryClass="\Del\Person\Repository\PersonRepository")
  */
-class Person
+class Person implements JsonSerializable
 {
     /**
      * @ORM\Id
@@ -221,5 +222,31 @@ class Person
         $middleName = $includeMiddleNames && $this->middlename ? ' ' . $this->middlename : '';
 
         return $this->firstname . $middleName . ' ' . $this->lastname;
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'firstname' => $this->getFirstname(),
+            'middlename' => $this->getMiddlename(),
+            'lastname' => $this->getLastname(),
+            'aka' => $this->getAka(),
+            'dob' => $this->getDob()->format('Y-m-d H:i:s'),
+            'birthplace' => $this->getBirthplace(),
+            'country' => $this->getCountry()->getIso(),
+            'image' => $this->getImage(),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return $this->toArray();
     }
 }

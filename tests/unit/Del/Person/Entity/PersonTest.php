@@ -85,4 +85,11 @@ class PersonTest extends \Codeception\TestCase\Test
         $this->person->setImage('photo.jpg');
         $this->assertEquals('photo.jpg',$this->person->getImage());
     }
+
+    public function testJsonSerialize()
+    {
+        $json = \json_encode($this->person);
+        $this->assertTrue($json);
+        $this->assertTrue(json_decode($json, true));
+    }
 }
