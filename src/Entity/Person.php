@@ -235,9 +235,9 @@ class Person implements JsonSerializable
             'middlename' => $this->getMiddlename(),
             'lastname' => $this->getLastname(),
             'aka' => $this->getAka(),
-            'dob' => $this->getDob()->format('Y-m-d H:i:s'),
+            'dob' => $this->getDob(),
             'birthplace' => $this->getBirthplace(),
-            'country' => $this->getCountry()->getIso(),
+            'country' => $this->country ? $this->getCountry()->getIso() : null,
             'image' => $this->getImage(),
         ];
     }
