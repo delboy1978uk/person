@@ -90,6 +90,6 @@ class PersonTest extends \Codeception\TestCase\Test
     {
         $json = \json_encode($this->person);
         $this->assertTrue($json);
-        $this->assertTrue(json_decode($json, true));
+        $this->assertEquals('{"id":null,"firstname":null,"middlename":null,"lastname":null,"aka":null,"dob":null,"birthplace":null,"country":null,"image":null}', json_decode($json, true));
     }
 }
