@@ -89,7 +89,7 @@ class PersonTest extends \Codeception\TestCase\Test
     public function testJsonSerialize()
     {
         $json = \json_encode($this->person);
-        $this->assertEquals('{"id":null,"firstname":null,"middlename":null,"lastname":null,"aka":null,"dob":null,"birthplace":null,"country":null,"image":null}', $json);
+        $this->assertEquals('{"id":null,"firstname":"","middlename":"","lastname":"","aka":"","dob":null,"birthplace":"","country":null,"image":""}', $json);
         $this->assertCount(9, json_decode($json, true));
     }
 }
