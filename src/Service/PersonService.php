@@ -22,7 +22,7 @@ class PersonService
         $this->em = $entityManager;
     }
 
-   /** 
+   /**
     * @param array $data
     * @return Person
     */
@@ -94,25 +94,18 @@ class PersonService
      * @param PersonCriteria $criteria
      * @return Person[]
      */
-    public function findByCriteria(PersonCriteria $criteria)
+    public function findByCriteria(PersonCriteria $criteria): array
     {
         return $this->getRepository()->findByCriteria($criteria);
     }
 
-    /**
-     * @param PersonCriteria $criteria
-     * @return Person|null
-     */
-    public function findOneByCriteria(PersonCriteria $criteria)
+    public function findOneByCriteria(PersonCriteria $criteria): ?Person
     {
         $results = $this->findByCriteria($criteria);
         return (isset($results[0])) ? $results[0] : null;
     }
 
-    /**
-     * @return \Doctrine\Common\Persistence\ObjectRepository|\Doctrine\ORM\EntityRepository
-     */
-    protected function getRepository()
+    protected function getRepository(): PersonRepository
     {
         return $this->em->getRepository(Person::class);
     }
