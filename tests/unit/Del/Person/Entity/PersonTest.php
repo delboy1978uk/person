@@ -86,6 +86,14 @@ class PersonTest extends \Codeception\TestCase\Test
         $this->assertEquals('photo.jpg',$this->person->getImage());
     }
 
+    public function testGetFullName()
+    {
+        $this->person->setFirstname('Robert');
+        $this->person->setMiddlename('Louis');
+        $this->person->setLastname('Stevenson');
+        $this->assertEquals('Robert Louis Stevenson',$this->person->getFullName());
+    }
+
     public function testJsonSerialize()
     {
         $json = \json_encode($this->person);
