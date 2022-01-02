@@ -12,9 +12,6 @@ class PersonPackageTest extends Test
 {
     private $container;
 
-    /**
-     * @throws \Doctrine\ORM\ORMException
-     */
     protected function _before()
     {
         $this->container =  ContainerProvider::getContainer();
@@ -28,5 +25,4 @@ class PersonPackageTest extends Test
         $svc = $this->container[PersonService::class];
         $this->assertInstanceOf(PersonService::class, $svc);
     }
-
 }

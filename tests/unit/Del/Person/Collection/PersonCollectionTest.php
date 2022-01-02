@@ -6,29 +6,8 @@ use Codeception\TestCase\Test;
 use Del\Person\Collection\PersonCollection as People;
 use Del\Person\Entity\Person;
 
-class PersonPeopleTest extends Test
+class PersonCollectionTest extends Test
 {
-   /**
-    * @var \UnitTester
-    */
-    protected $tester;
-
-    /**
-     * @var People
-     */
-    protected $people;
-
-    protected function _before()
-    {
-        $this->people = new People();
-    }
-
-    protected function _after()
-    {
-        unset($this->people);
-    }
-
-
     public function testFindKeyReturnsFalseWhenNotInPeople()
     {
         $collection = new People();

@@ -15,19 +15,8 @@ use Doctrine\ORM\EntityManager;
 
 class PersonServiceTest extends Test
 {
-   /**
-    * @var \UnitTester
-    */
-    protected $tester;
+    private PersonService $svc;
 
-    /**
-     * @var PersonService
-     */
-    protected $svc;
-
-    /**
-     * @throws \Doctrine\ORM\ORMException
-     */
     protected function _before()
     {
         $person = new Person();
