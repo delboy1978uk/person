@@ -10,8 +10,6 @@
   ],
   "require": {
     "delboy1978uk/country": "^2.0",
-    "doctrine/orm": "^2.10",
-    "delboy1978uk/barnacle": "^2.3",
     "delboy1978uk/bone-doctrine": "^1.4"
   },
   "require-dev": {
