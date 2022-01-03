@@ -2,31 +2,22 @@
 
 namespace DelTesting\Person;
 
-use Del\Common\ContainerService;
-use Del\Common\Config\DbCredentials;
+use Codeception\TestCase\Test;
 use Del\Person\PersonPackage;
 use Del\Person\Service\PersonService;
+use DelTesting\ContainerProvider;
+use Doctrine\ORM\EntityManager;
 
-class PersonPackageTest extends \Codeception\TestCase\Test
+class PersonPackageTest extends Test
 {
     private $container;
 
-    /**
-     * @throws \Doctrine\ORM\ORMException
-     */
     protected function _before()
     {
-        $db = new DbCredentials();
+        $this->container =  ContainerProvider::getContainer();
+        $this->container[EntityManager::class] =  $this->makeEmpty(EntityManager::class);
         $package = new PersonPackage();
-        $containerService = ContainerService::getInstance();
-        $containerService->registerToContainer($db);
-        $containerService->registerToContainer($package);
-        $this->container = $containerService->getContainer();
-    }
-
-    protected function _after()
-    {
-
+        $package->addToContainer($this->container);
     }
 
     public function testPersonServiceHasRegistered()
@@ -34,5 +25,4 @@ class PersonPackageTest extends \Codeception\TestCase\Test
         $svc = $this->container[PersonService::class];
         $this->assertInstanceOf(PersonService::class, $svc);
     }
-
 }

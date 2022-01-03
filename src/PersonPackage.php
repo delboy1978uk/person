@@ -39,6 +39,4 @@ class PersonPackage implements RegistrationInterface, EntityRegistrationInterfac
     {
         return true;
     }
-
-
 }

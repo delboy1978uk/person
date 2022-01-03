@@ -4,36 +4,35 @@ namespace DelTesting\Repository;
 
 use Codeception\TestCase\Test;
 use DateTime;
-use Del\Common\ContainerService;
-use Del\Common\Config\DbCredentials;
 use Del\Factory\CountryFactory;
 use Del\Person\Criteria\PersonCriteria;
+use Del\Person\Entity\Person;
 use Del\Person\PersonPackage;
+use Del\Person\Repository\PersonRepository;
 use Del\Person\Service\PersonService;
+use DelTesting\ContainerProvider;
+use Doctrine\ORM\EntityManager;
 
 class PersonServiceTest extends Test
 {
-   /**
-    * @var \UnitTester
-    */
-    protected $tester;
+    private PersonService $svc;
 
-    /**
-     * @var PersonService
-     */
-    protected $svc;
-
-    /**
-     * @throws \Doctrine\ORM\ORMException
-     */
     protected function _before()
     {
-        $db = new DbCredentials();
+        $person = new Person();
+        $person->setId(6);
+        $container =  ContainerProvider::getContainer();
+        $repo =  $this->makeEmpty(PersonRepository::class, [
+            'save' => $person,
+            'findByCriteria' => [$person],
+        ]);
+        $container[EntityManager::class] =  $this->makeEmpty(EntityManager::class, [
+            'getRepository' => $repo
+        ]);
         $package = new PersonPackage();
-        $containerService = ContainerService::getInstance();
-        $containerService->registerToContainer($db);
-        $containerService->registerToContainer($package);
-        $container = $containerService->getContainer();
+        $package->addToContainer($container);
+        $this->assertEquals('vendor/delboy1978uk/person/src/Entity', $package->getEntityPath());
+        $this->assertTrue($package->hasEntityPath());
         $this->svc = $container[PersonService::class];
     }
 

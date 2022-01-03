@@ -2,31 +2,22 @@
 
 namespace DelTesting\Entity;
 
+use Codeception\TestCase\Test;
 use DateTime;
 use Del\Factory\CountryFactory;
 use Del\Person\Entity\Person;
 
-class PersonTest extends \Codeception\TestCase\Test
+class PersonTest extends Test
 {
-   /**
-    * @var \UnitTester
-    */
-    protected $tester;
-
-    /**
-     * @var Person
-     */
-    protected $person;
+    private Person $person;
 
     protected function _before()
     {
-        // create a fresh blank class before each test
         $this->person = new Person();
     }
 
     protected function _after()
     {
-        // unset the person class after each test
         unset($this->person);
     }
 
@@ -84,6 +75,14 @@ class PersonTest extends \Codeception\TestCase\Test
     {
         $this->person->setImage('photo.jpg');
         $this->assertEquals('photo.jpg',$this->person->getImage());
+    }
+
+    public function testGetFullName()
+    {
+        $this->person->setFirstname('Robert');
+        $this->person->setMiddlename('Louis');
+        $this->person->setLastname('Stevenson');
+        $this->assertEquals('Robert Louis Stevenson',$this->person->getFullName(true));
     }
 
     public function testJsonSerialize()
