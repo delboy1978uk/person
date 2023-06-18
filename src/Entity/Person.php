@@ -36,7 +36,7 @@ class Person implements JsonSerializable
      * @ORM\Column(type="date",nullable=true)
      * @var DateTime
      */
-    private ?DateTime $dob;
+    private ?DateTime $dob = null;
 
     /** @ORM\Column(type="string",length=50,nullable=true) */
     private string $birthplace = '';
@@ -231,7 +231,7 @@ class Person implements JsonSerializable
     {
         $this->backgroundImage = $backgroundImage;
     }
-    
+
 
     /**
      * @param bool $includeMiddleNames
