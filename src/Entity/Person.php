@@ -21,34 +21,37 @@ class Person implements JsonSerializable
     private $id;
 
     /** @ORM\Column(type="string",length=60,nullable=true) */
-    private $firstname = '';
+    private string $firstname = '';
 
     /** @ORM\Column(type="string",length=60,nullable=true) */
-    private $middlename = '';
+    private string $middlename = '';
 
     /** @ORM\Column(type="string",length=60,nullable=true) */
-    private $lastname = '';
+    private string $lastname = '';
 
     /** @ORM\Column(type="string",length=50,nullable=true) */
-    private $aka = '';
+    private string $aka = '';
 
     /**
      * @ORM\Column(type="date",nullable=true)
      * @var DateTime
      */
-    private $dob;
+    private ?DateTime $dob;
 
     /** @ORM\Column(type="string",length=50,nullable=true) */
-    private $birthplace = '';
+    private string $birthplace = '';
 
     /**
      * @var string $country
      * @ORM\Column(type="string",length=3,nullable=true)
      */
-    private $country = '';
+    private string $country = '';
 
     /** @ORM\Column(type="string",length=255,nullable=true) */
-    private $image = '';
+    private string $image = '';
+
+    /** @ORM\Column(type="string",length=255,nullable=true) */
+    private string $backgroundImage = '';
 
     /**
      * @return int
@@ -214,6 +217,23 @@ class Person implements JsonSerializable
     }
 
     /**
+     * @return string
+     */
+    public function getBackgroundImage(): string
+    {
+        return $this->backgroundImage;
+    }
+
+    /**
+     * @param string $backgroundImage
+     */
+    public function setBackgroundImage(string $backgroundImage): void
+    {
+        $this->backgroundImage = $backgroundImage;
+    }
+    
+
+    /**
      * @param bool $includeMiddleNames
      * @return string
      */
@@ -239,6 +259,7 @@ class Person implements JsonSerializable
             'birthplace' => $this->getBirthplace(),
             'country' => $this->country ? $this->getCountry()->getIso() : null,
             'image' => $this->getImage(),
+            'backgrundImage' => $this->getImage(),
         ];
     }
 
