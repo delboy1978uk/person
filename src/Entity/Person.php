@@ -18,7 +18,7 @@ class Person implements JsonSerializable
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue
      */
-    private ?int $id;
+    private ?int $id = null;
 
     /** @ORM\Column(type="string",length=60,nullable=true) */
     private ?string $firstname = '';
