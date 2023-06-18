@@ -18,7 +18,7 @@ class Person implements JsonSerializable
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue
      */
-    private $id;
+    private ?int $id;
 
     /** @ORM\Column(type="string",length=60,nullable=true) */
     private ?string $firstname = '';
@@ -56,7 +56,7 @@ class Person implements JsonSerializable
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -65,10 +65,9 @@ class Person implements JsonSerializable
      * @param int $id
      * @return Person
      */
-    public function setId($id)
+    public function setId(int $id): void
     {
         $this->id = $id;
-        return $this;
     }
 
     /**
@@ -84,159 +83,91 @@ class Person implements JsonSerializable
      * @param Country $country
      * @return Person
      */
-    public function setCountry(Country $country)
+    public function setCountry(Country $country): void
     {
         $this->country = $country->getIso();
-        return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getFirstname()
+    public function getFirstname(): ?string
     {
         return $this->firstname;
     }
 
-    /**
-     * @param string $firstname
-     * @return Person
-     */
-    public function setFirstname($firstname)
+    public function setFirstname(string $firstname): void
     {
         $this->firstname = $firstname;
-        return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getMiddlename()
+    public function getMiddlename(): ?string
     {
         return $this->middlename;
     }
 
-    /**
-     * @param string $middlename
-     * @return Person
-     */
-    public function setMiddlename($middlename)
+    public function setMiddlename(string $middlename): void
     {
         $this->middlename = $middlename;
-        return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getLastname()
+    public function getLastname(): ?string
     {
         return $this->lastname;
     }
 
-    /**
-     * @param string $lastname
-     * @return Person
-     */
-    public function setLastname($lastname)
+    public function setLastname(string $lastname): void
     {
         $this->lastname = $lastname;
-        return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getAka()
+    public function getAka(): ?string
     {
         return $this->aka;
     }
 
-    /**
-     * @param string $aka
-     * @return Person
-     */
-    public function setAka($aka)
+    public function setAka(string $aka): void
     {
         $this->aka = $aka;
-        return $this;
     }
 
-    /**
-     * @return DateTime
-     */
-    public function getDob()
+    public function getDob(): ?DateTime
     {
         return $this->dob;
     }
 
-    /**
-     * @param $dob
-     * @return Person
-     */
-    public function setDob(DateTime $dob)
+    public function setDob(DateTime $dob): void
     {
         $this->dob = $dob;
-        return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getBirthplace()
+    public function getBirthplace(): ?string
     {
         return $this->birthplace;
     }
 
-    /**
-     * @param string $birthplace
-     * @return Person
-     */
-    public function setBirthplace($birthplace)
+    public function setBirthplace(string $birthplace): void
     {
         $this->birthplace = $birthplace;
-        return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getImage()
+    public function getImage(): ?string
     {
         return $this->image;
     }
 
-    /**
-     * @param string $image
-     * @return Person
-     */
-    public function setImage($image)
+    public function setImage(string $image): void
     {
         $this->image = $image;
-        return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getBackgroundImage(): string
+    public function getBackgroundImage(): ?string
     {
         return $this->backgroundImage;
     }
 
-    /**
-     * @param string $backgroundImage
-     */
     public function setBackgroundImage(string $backgroundImage): void
     {
         $this->backgroundImage = $backgroundImage;
     }
 
-
-    /**
-     * @param bool $includeMiddleNames
-     * @return string
-     */
     public function getFullName($includeMiddleNames = false): string
     {
         $middleName = $includeMiddleNames && $this->middlename ? ' ' . $this->middlename : '';
@@ -244,9 +175,6 @@ class Person implements JsonSerializable
         return $this->firstname . $middleName . ' ' . $this->lastname;
     }
 
-    /**
-     * @return array
-     */
     public function toArray(): array
     {
         return [
@@ -263,10 +191,7 @@ class Person implements JsonSerializable
         ];
     }
 
-    /**
-     * @return array
-     */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return $this->toArray();
     }
