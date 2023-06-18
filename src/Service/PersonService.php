@@ -49,6 +49,7 @@ class PersonService
         isset($data['birthplace']) ? $person->setBirthplace($data['birthplace']) : null;
         isset($data['country']) ? $person->setCountry($data['country']) : null;
         isset($data['image']) ? $person->setImage($data['image']) : null;
+        isset($data['backgroundImage']) ? $person->setImage($data['image']) : null;
 
         return $person;
     }
@@ -69,6 +70,7 @@ class PersonService
             'birthplace' => $person->getBirthplace(),
             'country' => $person->getCountry(),
             'image' => $person->getImage(),
+            'backgroundImage' => $person->getBackgroundImage(),
         ];
         return $data;
     }

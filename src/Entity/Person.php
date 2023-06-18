@@ -21,16 +21,16 @@ class Person implements JsonSerializable
     private $id;
 
     /** @ORM\Column(type="string",length=60,nullable=true) */
-    private string $firstname = '';
+    private ?string $firstname = '';
 
     /** @ORM\Column(type="string",length=60,nullable=true) */
-    private string $middlename = '';
+    private ?string $middlename = '';
 
     /** @ORM\Column(type="string",length=60,nullable=true) */
-    private string $lastname = '';
+    private ?string $lastname = '';
 
     /** @ORM\Column(type="string",length=50,nullable=true) */
-    private string $aka = '';
+    private ?string $aka = '';
 
     /**
      * @ORM\Column(type="date",nullable=true)
@@ -39,19 +39,19 @@ class Person implements JsonSerializable
     private ?DateTime $dob = null;
 
     /** @ORM\Column(type="string",length=50,nullable=true) */
-    private string $birthplace = '';
+    private ?string $birthplace = '';
 
     /**
      * @var string $country
      * @ORM\Column(type="string",length=3,nullable=true)
      */
-    private string $country = '';
+    private ?string $country = '';
 
     /** @ORM\Column(type="string",length=255,nullable=true) */
-    private string $image = '';
+    private ?string $image = '';
 
     /** @ORM\Column(type="string",length=255,nullable=true) */
-    private string $backgroundImage = '';
+    private ?string $backgroundImage = '';
 
     /**
      * @return int
