@@ -94,7 +94,7 @@ class PersonTest extends Test
     public function testJsonSerialize()
     {
         $json = \json_encode($this->person);
-        $this->assertEquals('{"id":null,"firstname":"","middlename":"","lastname":"","aka":"","dob":null,"birthplace":"","country":null,"image":""}', $json);
+        $this->assertEquals('{"id":null,"firstname":"","middlename":"","lastname":"","aka":"","dob":null,"birthplace":"","country":null,"image":"","backgrundImage":""}', $json);
         $this->assertCount(9, json_decode($json, true));
     }
 }

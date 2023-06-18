@@ -9,6 +9,7 @@
     }
   ],
   "require": {
+    "php":  "^8.0",
     "delboy1978uk/country": "^2.0",
     "delboy1978uk/bone-doctrine": "^1.4"
   },
