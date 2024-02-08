@@ -49,7 +49,7 @@ class PersonCriteria
 
     public function setLimit(int $limit): void
     {
-        $this->limit = $code;
+        $this->limit = $limit;
     }
 
     public function getLimit(): int
