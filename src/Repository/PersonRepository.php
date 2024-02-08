@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Del\Person\Repository;
 
 use Del\Person\Entity\Person as PersonEntity;
@@ -10,43 +12,25 @@ use PDO;
 
 class PersonRepository extends EntityRepository
 {
-    /** @var QueryBuilder $qb */
-    private $qb;
+    private QueryBuilder $qb;
 
-    /**
-     * @param PersonEntity $person
-     * @return PersonEntity
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     */
-    public function save(PersonEntity $person)
+    public function save(PersonEntity $person): PersonEntity
     {
         $this->_em->persist($person);
         $this->_em->flush();
+
         return $person;
     }
 
-    /**
-     * @param PersonEntity $person
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     */
-    public function delete(PersonEntity $person)
+    public function delete(PersonEntity $person): void
     {
         $this->_em->remove($person);
         $this->_em->flush();
     }
 
-
-
-    /**
-     * @param PersonCriteria $criteria
-     * @return array
-     */
-    public function findByCriteria(PersonCriteria $criteria)
+    public function findByCriteria(PersonCriteria $criteria): array
     {
         $this->qb = $this->createQueryBuilder('p');
-
         $this->checkId($criteria);
         $this->checkFirstname($criteria);
         $this->checkMiddlename($criteria);
@@ -58,17 +42,13 @@ class PersonRepository extends EntityRepository
         $this->checkOrder($criteria);
         $this->checkLimit($criteria);
         $this->checkOffset($criteria);
-
         $query = $this->qb->getQuery();
         unset($this->qb);
+
         return $query->getResult();
     }
 
-
-    /**
-     * @param PersonCriteria $criteria
-     */
-    private function checkId(PersonCriteria $criteria)
+    private function checkId(PersonCriteria $criteria): void
     {
         if($criteria->hasId()) {
             $this->qb->where('p.id = :id');
@@ -76,11 +56,7 @@ class PersonRepository extends EntityRepository
         }
     }
 
-
-    /**
-     * @param PersonCriteria $criteria
-     */
-    private function checkFirstname(PersonCriteria $criteria)
+    private function checkFirstname(PersonCriteria $criteria): void
     {
         if($criteria->hasFirstname()) {
             $this->qb->andWhere('p.firstname = :firstname');
@@ -88,11 +64,7 @@ class PersonRepository extends EntityRepository
         }
     }
 
-
-    /**
-     * @param PersonCriteria $criteria
-     */
-    private function checkMiddlename(PersonCriteria $criteria)
+    private function checkMiddlename(PersonCriteria $criteria): void
     {
         if($criteria->hasMiddlename()) {
             $this->qb->andWhere('p.middlename = :middlename');
@@ -100,10 +72,7 @@ class PersonRepository extends EntityRepository
         }
     }
 
-    /**
-     * @param PersonCriteria $criteria
-     */
-    private function checkLastname(PersonCriteria $criteria)
+    private function checkLastname(PersonCriteria $criteria): void
     {
         if($criteria->hasLastname()) {
             $this->qb->andWhere('p.lastname = :lastname');
@@ -111,10 +80,7 @@ class PersonRepository extends EntityRepository
         }
     }
 
-    /**
-     * @param PersonCriteria $criteria
-     */
-    private function checkAka(PersonCriteria $criteria)
+    private function checkAka(PersonCriteria $criteria): void
     {
         if($criteria->hasAka()) {
             $this->qb->andWhere('p.aka = :aka');
@@ -122,10 +88,7 @@ class PersonRepository extends EntityRepository
         }
     }
 
-    /**
-     * @param PersonCriteria $criteria
-     */
-    private function checkBirthplace(PersonCriteria $criteria)
+    private function checkBirthplace(PersonCriteria $criteria): void
     {
         if($criteria->hasBirthplace()) {
             $this->qb->andWhere('p.birthplace = :birthplace');
@@ -133,10 +96,7 @@ class PersonRepository extends EntityRepository
         }
     }
 
-    /**
-     * @param PersonCriteria $criteria
-     */
-    private function checkCountry(PersonCriteria $criteria)
+    private function checkCountry(PersonCriteria $criteria): void
     {
         if($criteria->hasCountry()) {
             $this->qb->andWhere('p.country = :country');
@@ -144,10 +104,7 @@ class PersonRepository extends EntityRepository
         }
     }
 
-    /**
-     * @param PersonCriteria $criteria
-     */
-    private function checkDob(PersonCriteria $criteria)
+    private function checkDob(PersonCriteria $criteria): void
     {
         if($criteria->hasDob()) {
             $this->qb->andWhere('p.dob = :dob');
@@ -155,28 +112,17 @@ class PersonRepository extends EntityRepository
         }
     }
 
-
-    /**
-     * @param PersonCriteria $criteria
-     */
-    private function checkOrder(PersonCriteria $criteria)
+    private function checkOrder(PersonCriteria $criteria): void
     {
         $criteria->hasOrder() ? $this->qb->addOrderBy('p.'.$criteria->getOrder(), $criteria->getOrderDirection()) : null;
-
     }
 
-    /**
-     * @param PersonCriteria $criteria
-     */
-    private function checkLimit(PersonCriteria $criteria)
+    private function checkLimit(PersonCriteria $criteria): void
     {
         $criteria->hasLimit() ? $this->qb->setMaxResults($criteria->getLimit()) : null;
     }
 
-    /**
-     * @param PersonCriteria $criteria
-     */
-    private function checkOffset(PersonCriteria $criteria)
+    private function checkOffset(PersonCriteria $criteria): void
     {
         $criteria->hasOffset() ? $this->qb->setFirstResult($criteria->getOffset()) : null;
     }
