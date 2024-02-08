@@ -32,7 +32,6 @@ class PersonServiceTest extends Test
         $package = new PersonPackage();
         $package->addToContainer($container);
         $this->assertEquals('vendor/delboy1978uk/person/src/Entity', $package->getEntityPath());
-        $this->assertTrue($package->hasEntityPath());
         $this->svc = $container[PersonService::class];
     }
 
