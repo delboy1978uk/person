@@ -105,12 +105,12 @@ class Person implements JsonSerializable
         $this->aka = $aka;
     }
 
-    public function getDob(): ?DateTime
+    public function getDob(): ?DateTimeInterface
     {
         return $this->dob;
     }
 
-    public function setDob(DateTime $dob): void
+    public function setDob(DateTimeInterface $dob): void
     {
         $this->dob = $dob;
     }
