@@ -9,13 +9,13 @@
     }
   ],
   "require": {
-    "php":  "^8.0",
+    "php":  "^8.2",
     "delboy1978uk/country": "^2.0",
-    "delboy1978uk/bone-doctrine": "^1.4"
+    "delboy1978uk/bone-doctrine": "^2.0"
   },
   "require-dev": {
-    "codeception/codeception": "^4.0",
-    "codeception/module-asserts": "^1.1"
+    "codeception/codeception": "^5.0",
+    "codeception/module-asserts": "^3.0"
   },
   "autoload": {
     "psr-4": {
