@@ -2,13 +2,13 @@
 
 namespace DelTesting\Person;
 
-use Codeception\TestCase\Test;
+use Codeception\Test\Unit;
 use Del\Person\PersonPackage;
 use Del\Person\Service\PersonService;
 use DelTesting\ContainerProvider;
 use Doctrine\ORM\EntityManager;
 
-class PersonPackageTest extends Test
+class PersonPackageTest extends Unit
 {
     private $container;
 
