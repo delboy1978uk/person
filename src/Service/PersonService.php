@@ -10,22 +10,11 @@ use Barnacle\Container;
 
 class PersonService
 {
-    /** @var EntityManager $em */
-    protected $em;
-
-    /**
-     * PersonService constructor.
-     * @param EntityManager $entityManager
-     */
-    public function __construct(EntityManager $entityManager)
-    {
-        $this->em = $entityManager;
+    public function __construct(
+        protected EntityManager $em
+    ) {
     }
 
-   /**
-    * @param array $data
-    * @return Person
-    */
     public function createFromArray(array $data): Person
     {
         $person = new Person();
@@ -33,11 +22,6 @@ class PersonService
         return $this->populateFromArray($person, $data);
     }
 
-    /**
-     * @param Person $person
-     * @param array $data
-     * @return Person
-     */
     public function populateFromArray(Person $person, array $data): Person
     {
         isset($data['id']) ? $person->setId($data['id']) : null;
@@ -54,10 +38,6 @@ class PersonService
         return $person;
     }
 
-    /**
-     * @param Person $person
-     * @return array
-     */
     public function toArray(Person $person): array
     {
         $data = [
@@ -72,30 +52,20 @@ class PersonService
             'image' => $person->getImage(),
             'backgroundImage' => $person->getBackgroundImage(),
         ];
+
         return $data;
     }
 
-    /**
-     * @param Person $person
-     * @return Person
-     */
     public function savePerson(Person $person): Person
     {
         return $this->getRepository()->save($person);
     }
 
-    /**
-     * @param Person $person
-     */
     public function deletePerson(Person $person): void
     {
         $this->getRepository()->delete($person);
     }
 
-    /**
-     * @param PersonCriteria $criteria
-     * @return Person[]
-     */
     public function findByCriteria(PersonCriteria $criteria): array
     {
         return $this->getRepository()->findByCriteria($criteria);

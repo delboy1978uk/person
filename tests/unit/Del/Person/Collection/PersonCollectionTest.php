@@ -2,11 +2,11 @@
 
 namespace DelTesting\Repository;
 
-use Codeception\TestCase\Test;
+use Codeception\Test\Unit;
 use Del\Person\Collection\PersonCollection as People;
 use Del\Person\Entity\Person;
 
-class PersonCollectionTest extends Test
+class PersonCollectionTest extends Unit
 {
     public function testFindKeyReturnsFalseWhenNotInPeople()
     {

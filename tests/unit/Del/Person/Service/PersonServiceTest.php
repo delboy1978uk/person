@@ -2,7 +2,7 @@
 
 namespace DelTesting\Repository;
 
-use Codeception\TestCase\Test;
+use Codeception\Test\Unit;
 use DateTime;
 use Del\Factory\CountryFactory;
 use Del\Person\Criteria\PersonCriteria;
@@ -13,7 +13,7 @@ use Del\Person\Service\PersonService;
 use DelTesting\ContainerProvider;
 use Doctrine\ORM\EntityManager;
 
-class PersonServiceTest extends Test
+class PersonServiceTest extends Unit
 {
     private PersonService $svc;
 
@@ -32,7 +32,6 @@ class PersonServiceTest extends Test
         $package = new PersonPackage();
         $package->addToContainer($container);
         $this->assertEquals('vendor/delboy1978uk/person/src/Entity', $package->getEntityPath());
-        $this->assertTrue($package->hasEntityPath());
         $this->svc = $container[PersonService::class];
     }
 

@@ -6,7 +6,6 @@ class PersonCriteria
 {
     const ORDER_ASC = 'ASC';
     const ORDER_DESC = 'DESC';
-
     const ORDER_FIRSTNAME = 'firstname';
     const ORDER_MIDDLENAME = 'middlename';
     const ORDER_LASTNAME = 'state';
@@ -15,339 +14,202 @@ class PersonCriteria
     const ORDER_COUNTRY = 'country';
     const ORDER_DOB = 'dob';
 
-    protected $id;
-    protected $firstname;
-    protected $middlename;
-    protected $lastname;
-    protected $aka;
-    protected $birthplace;
-    protected $country;
-    protected $dob;
+    protected ?int $id = null;
+    protected ?string $firstname = null;
+    protected ?string $middlename = null;
+    protected ?string $lastname = null;
+    protected ?string $aka = null;
+    protected ?string $birthplace = null;
+    protected ?string $country = null;
+    protected ?string $dob = null;
+    protected ?int $limit = null;
+    protected ?int $offset = null;
+    protected ?string $order = null;
+    protected ?string $orderDirection = null;
 
-    protected $limit;
-    protected $offset;
-    protected $order;
-    protected $orderDirection;
-
-    /**
-     * @return bool
-     */
-    public function hasOffset()
+    public function hasOffset(): bool
     {
         return $this->offset !== null;
     }
 
-    /**
-     * @param $code
-     * @return $this
-     */
-    public function setOffset($code)
+    public function setOffset(int $offset): void
     {
-        $this->offset = $code;
-        return $this;
+        $this->offset = $offset;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getOffset()
+    public function getOffset(): int
     {
         return $this->offset;
     }
 
-    /**
-     * @return bool
-     */
-    public function hasLimit()
+    public function hasLimit(): bool
     {
         return $this->limit !== null;
     }
 
-    /**
-     * @param $code
-     * @return $this
-     */
-    public function setLimit($code)
+    public function setLimit(int $limit): void
     {
-        $this->limit = $code;
-        return $this;
+        $this->limit = $limit;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLimit()
+    public function getLimit(): int
     {
         return $this->limit;
     }
 
-    /**
-     * @return bool
-     */
-    public function hasOrder()
+    public function hasOrder(): bool
     {
         return $this->order !== null;
     }
 
-    /**
-     * @param $code
-     * @return $this
-     */
-    public function setOrder($order)
+    public function setOrder(string $order): void
     {
         $this->order = $order;
-        return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getOrder()
+    public function getOrder(): string
     {
         return $this->order;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getOrderDirection()
+    public function getOrderDirection(): string
     {
         return $this->orderDirection;
     }
 
-    /**
-     * @param mixed $orderDirection
-     * @return Criteria
-     */
-    public function setOrderDirection($orderDirection)
+    public function setOrderDirection(string $orderDirection): void
     {
         $this->orderDirection = $orderDirection;
-        return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function hasOrderDirection()
+    public function hasOrderDirection(): bool
     {
         return $this->orderDirection !== null;
     }
 
-    /**
-     * @param $page
-     * @param $limit
-     */
-    public function setPagination($page, $limit)
+    public function setPagination(int $page, int $limit): void
     {
         $offset = ($limit * $page) - $limit;
         $this->setLimit($limit);
         $this->setOffset($offset);
     }
 
-    /**
-     * @return int
-     */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param $id
-     * @return $this
-     */
-    public function setId($id)
+    public function setId(int $id): void
     {
-        $this->id = (int)$id;
-        return $this;
+        $this->id = $id;
     }
 
-    /**
-     * @return bool
-     */
-    public function hasId()
+    public function hasId(): bool
     {
         return $this->id != null;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getFirstname()
+    public function getFirstname(): string
     {
         return $this->firstname;
     }
 
-    /**
-     * @param string $firstname
-     * @return PersonCriteria
-     */
-    public function setFirstname($firstname)
+    public function setFirstname(string $firstname): void
     {
         $this->firstname = $firstname;
-        return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function hasFirstname()
+    public function hasFirstname(): bool
     {
         return $this->firstname != null;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getMiddlename()
+    public function getMiddlename(): string
     {
         return $this->middlename;
     }
 
-    /**
-     * @param mixed $middlename
-     * @return PersonCriteria
-     */
-    public function setMiddlename($middlename)
+    public function setMiddlename(string $middlename): void
     {
         $this->middlename = $middlename;
-        return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function hasMiddlename()
+    public function hasMiddlename(): bool
     {
         return $this->middlename != null;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLastname()
+    public function getLastname(): string
     {
         return $this->lastname;
     }
 
-    /**
-     * @param mixed $lastname
-     * @return PersonCriteria
-     */
-    public function setLastname($lastname)
+    public function setLastname(string $lastname): void
     {
         $this->lastname = $lastname;
-        return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function hasLastname()
+    public function hasLastname(): bool
     {
         return $this->lastname != null;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getAka()
+    public function getAka(): string
     {
         return $this->aka;
     }
 
-    /**
-     * @param mixed $aka
-     * @return PersonCriteria
-     */
-    public function setAka($aka)
+    public function setAka(string $aka): void
     {
         $this->aka = $aka;
-        return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function hasAka()
+    public function hasAka(): bool
     {
         return $this->aka != null;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getBirthplace()
+    public function getBirthplace(): string
     {
         return $this->birthplace;
     }
 
-    /**
-     * @param mixed $birthplace
-     * @return PersonCriteria
-     */
-    public function setBirthplace($birthplace)
+    public function setBirthplace(string $birthplace): void
     {
         $this->birthplace = $birthplace;
-        return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function hasBirthplace()
+    public function hasBirthplace(): bool
     {
         return $this->birthplace != null;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCountry()
+    public function getCountry(): string
     {
         return $this->country;
     }
 
-    /**
-     * @param mixed $country
-     * @return PersonCriteria
-     */
-    public function setCountry($country)
+    public function setCountry(string $country): void
     {
         $this->country = $country;
-        return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function hasCountry()
+    public function hasCountry(): bool
     {
         return $this->country != null;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDob()
+    public function getDob(): string
     {
         return $this->dob;
     }
 
-    /**
-     * @param mixed $dob
-     * @return PersonCriteria
-     */
-    public function setDob($dob)
+    public function setDob(string $dob): void
     {
         $this->dob = $dob;
-        return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function hasDob()
+    public function hasDob(): bool
     {
         return $this->dob != null;
     }

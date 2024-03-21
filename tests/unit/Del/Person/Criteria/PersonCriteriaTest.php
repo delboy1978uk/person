@@ -2,10 +2,10 @@
 
 namespace DelTesting\Entity;
 
-use Codeception\TestCase\Test;
+use Codeception\Test\Unit;
 use Del\Person\Criteria\PersonCriteria;
 
-class PersonCriteriaTest extends Test
+class PersonCriteriaTest extends Unit
 {
     public function testGetSet()
     {

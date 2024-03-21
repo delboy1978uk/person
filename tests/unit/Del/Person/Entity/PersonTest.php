@@ -2,12 +2,12 @@
 
 namespace DelTesting\Entity;
 
-use Codeception\TestCase\Test;
+use Codeception\Test\Unit;
 use DateTime;
 use Del\Factory\CountryFactory;
 use Del\Person\Entity\Person;
 
-class PersonTest extends Test
+class PersonTest extends Unit
 {
     private Person $person;
 

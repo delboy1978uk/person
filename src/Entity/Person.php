@@ -1,88 +1,65 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Del\Person\Entity;
 
-use DateTime;
+use DateTimeInterface;
 use Del\Entity\Country;
 use Del\Factory\CountryFactory;
 use Doctrine\ORM\Mapping as ORM;
 use JsonSerializable;
 
-/**
- * @ORM\Entity(repositoryClass="\Del\Person\Repository\PersonRepository")
- */
+#[ORM\Entity(repositoryClass: '\Del\Person\Repository\PersonRepository')]
 class Person implements JsonSerializable
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue
-     */
+    #[ORM\Id]
+    #[ORM\Column(type: 'integer')]
+    #[ORM\GeneratedValue]
     private ?int $id = null;
 
-    /** @ORM\Column(type="string",length=60,nullable=true) */
+    #[ORM\Column(type: 'string', length: 60, nullable: true)]
     private ?string $firstname = '';
 
-    /** @ORM\Column(type="string",length=60,nullable=true) */
+    #[ORM\Column(type: 'string', length: 60, nullable: true)]
     private ?string $middlename = '';
 
-    /** @ORM\Column(type="string",length=60,nullable=true) */
+    #[ORM\Column(type: 'string', length: 60, nullable: true)]
     private ?string $lastname = '';
 
-    /** @ORM\Column(type="string",length=50,nullable=true) */
+    #[ORM\Column(type: 'string', length: 50, nullable: true)]
     private ?string $aka = '';
 
-    /**
-     * @ORM\Column(type="date",nullable=true)
-     * @var DateTime
-     */
-    private ?DateTime $dob = null;
+    #[ORM\Column(type: 'date', nullable: true)]
+    private ?DateTimeInterface $dob = null;
 
-    /** @ORM\Column(type="string",length=50,nullable=true) */
+    #[ORM\Column(type: 'string', length: 50, nullable: true)]
     private ?string $birthplace = '';
 
-    /**
-     * @var string $country
-     * @ORM\Column(type="string",length=3,nullable=true)
-     */
+    #[ORM\Column(type: 'string', length: 3, nullable: true)]
     private ?string $country = '';
 
-    /** @ORM\Column(type="string",length=255,nullable=true) */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $image = '';
 
-    /** @ORM\Column(type="string",length=255,nullable=true) */
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $backgroundImage = '';
 
-    /**
-     * @return int
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return Person
-     */
     public function setId(int $id): void
     {
         $this->id = $id;
     }
 
-    /**
-     * @return Country|null
-     * @throws \Del\CountryException
-     */
     public function getCountry(): ?Country
     {
         return $this->country ? CountryFactory::generate($this->country) : null;
     }
 
-    /**
-     * @param Country $country
-     * @return Person
-     */
     public function setCountry(Country $country): void
     {
         $this->country = $country->getIso();
@@ -128,12 +105,12 @@ class Person implements JsonSerializable
         $this->aka = $aka;
     }
 
-    public function getDob(): ?DateTime
+    public function getDob(): ?DateTimeInterface
     {
         return $this->dob;
     }
 
-    public function setDob(DateTime $dob): void
+    public function setDob(DateTimeInterface $dob): void
     {
         $this->dob = $dob;
     }
