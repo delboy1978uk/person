@@ -16,16 +16,16 @@ class PersonRepository extends EntityRepository
 
     public function save(PersonEntity $person): PersonEntity
     {
-        $this->_em->persist($person);
-        $this->_em->flush();
+        $this->getEntityManager()->persist($person);
+        $this->getEntityManager()->flush();
 
         return $person;
     }
 
     public function delete(PersonEntity $person): void
     {
-        $this->_em->remove($person);
-        $this->_em->flush();
+        $this->getEntityManager()->remove($person);
+        $this->getEntityManager()->flush();
     }
 
     public function findByCriteria(PersonCriteria $criteria): array
