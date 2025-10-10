@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Del\Person\Entity;
 
+use Bone\BoneDoctrine\Attributes\Cast;
 use Bone\BoneDoctrine\Attributes\Visibility;
 use Bone\BoneDoctrine\Traits\HasId;
 use Bone\BoneDoctrine\Traits\HasImage;
@@ -11,6 +12,7 @@ use DateTimeInterface;
 use Del\Entity\Country;
 use Del\Form\Field\Attributes\Field;
 use Del\Factory\CountryFactory;
+use Del\Form\Field\Transformer\DateTimeTransformer;
 use Del\Form\Traits\HasFormFields;
 use Del\Person\Repository\PersonRepository;
 use Del\Traits\HasCountryTrait;
@@ -47,6 +49,7 @@ class Person implements JsonSerializable
     #[ORM\Column(type: 'date', nullable: true)]
     #[Field('date')]
     #[Visibility('all')]
+    #[Cast(transformer: new DateTimeTransformer('D d M Y'))]
     private ?DateTimeInterface $dob = null;
 
     #[ORM\Column(type: 'string', length: 50, nullable: true)]

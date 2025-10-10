@@ -2,19 +2,15 @@
 
 namespace Del\Person\Service;
 
+use Bone\BoneDoctrine\Service\RestService;
 use Del\Person\Criteria\PersonCriteria;
 use Del\Person\Entity\Person;
 use Del\Person\Repository\PersonRepository;
 use Doctrine\ORM\EntityManager;
 use Barnacle\Container;
 
-class PersonService
+class PersonService extends RestService
 {
-    public function __construct(
-        protected EntityManager $em
-    ) {
-    }
-
     public function createFromArray(array $data): Person
     {
         $person = new Person();
@@ -80,5 +76,10 @@ class PersonService
     protected function getRepository(): PersonRepository
     {
         return $this->em->getRepository(Person::class);
+    }
+
+    public function getEntityClass(): string
+    {
+        return Person::class;
     }
 }
