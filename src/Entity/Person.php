@@ -4,66 +4,63 @@ declare(strict_types=1);
 
 namespace Del\Person\Entity;
 
+use Bone\BoneDoctrine\Attributes\Visibility;
+use Bone\BoneDoctrine\Traits\HasId;
+use Bone\BoneDoctrine\Traits\HasImage;
 use DateTimeInterface;
 use Del\Entity\Country;
+use Del\Form\Field\Attributes\Field;
 use Del\Factory\CountryFactory;
+use Del\Form\Traits\HasFormFields;
+use Del\Person\Repository\PersonRepository;
+use Del\Traits\HasCountryTrait;
 use Doctrine\ORM\Mapping as ORM;
 use JsonSerializable;
 
-#[ORM\Entity(repositoryClass: '\Del\Person\Repository\PersonRepository')]
+#[ORM\Entity(repositoryClass: PersonRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Person implements JsonSerializable
 {
-    #[ORM\Id]
-    #[ORM\Column(type: 'integer')]
-    #[ORM\GeneratedValue]
-    private ?int $id = null;
+    use HasFormFields;
+    use HasId;
 
     #[ORM\Column(type: 'string', length: 60, nullable: true)]
+    #[Field('string|max:60')]
+    #[Visibility('all')]
     private ?string $firstname = '';
 
     #[ORM\Column(type: 'string', length: 60, nullable: true)]
+    #[Field('string|max:60')]
+    #[Visibility('all')]
     private ?string $middlename = '';
 
     #[ORM\Column(type: 'string', length: 60, nullable: true)]
+    #[Field('string|max:60')]
+    #[Visibility('all')]
     private ?string $lastname = '';
 
     #[ORM\Column(type: 'string', length: 50, nullable: true)]
+    #[Field('string|max:50')]
+    #[Visibility('all')]
     private ?string $aka = '';
 
     #[ORM\Column(type: 'date', nullable: true)]
+    #[Field('date')]
+    #[Visibility('all')]
     private ?DateTimeInterface $dob = null;
 
     #[ORM\Column(type: 'string', length: 50, nullable: true)]
+    #[Field('string|max:50')]
+    #[Visibility('all')]
     private ?string $birthplace = '';
 
-    #[ORM\Column(type: 'string', length: 3, nullable: true)]
-    private ?string $country = '';
+    use HasCountryTrait;
+    use HasImage;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private ?string $image = '';
-
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Field('string')]
+    #[Visibility('all')]
     private ?string $backgroundImage = '';
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function setId(int $id): void
-    {
-        $this->id = $id;
-    }
-
-    public function getCountry(): ?Country
-    {
-        return $this->country ? CountryFactory::generate($this->country) : null;
-    }
-
-    public function setCountry(Country $country): void
-    {
-        $this->country = $country->getIso();
-    }
 
     public function getFirstname(): ?string
     {
@@ -123,16 +120,6 @@ class Person implements JsonSerializable
     public function setBirthplace(string $birthplace): void
     {
         $this->birthplace = $birthplace;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): void
-    {
-        $this->image = $image;
     }
 
     public function getBackgroundImage(): ?string

@@ -58,6 +58,7 @@ class PersonServiceTest extends Unit
     {
         $array = $this->getPersonArray();
         $person = $this->svc->createFromArray($array);
+        $person->setId(123);
         $array = $this->svc->toArray($person);
 
         $this->assertArrayHasKey('id', $array);

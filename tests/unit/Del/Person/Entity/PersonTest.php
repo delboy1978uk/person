@@ -14,6 +14,9 @@ class PersonTest extends Unit
     protected function _before()
     {
         $this->person = new Person();
+        $this->person->setId(123);
+        $country = CountryFactory::generate('BE');
+        $this->person->setCountry($country);
     }
 
     protected function _after()
@@ -94,7 +97,7 @@ class PersonTest extends Unit
     public function testJsonSerialize()
     {
         $json = \json_encode($this->person);
-        $this->assertEquals('{"id":null,"firstname":"","middlename":"","lastname":"","aka":"","dob":null,"birthplace":"","country":null,"image":"","backgrundImage":""}', $json);
+        $this->assertEquals('{"id":123,"firstname":"","middlename":"","lastname":"","aka":"","dob":null,"birthplace":"","country":"BE","image":"","backgrundImage":""}', $json);
         $this->assertCount(10, json_decode($json, true));
     }
 }
