@@ -6,11 +6,16 @@ use Bone\BoneDoctrine\Service\RestService;
 use Del\Person\Criteria\PersonCriteria;
 use Del\Person\Entity\Person;
 use Del\Person\Repository\PersonRepository;
-use Doctrine\ORM\EntityManager;
 use Barnacle\Container;
+use Doctrine\ORM\EntityManagerInterface;
 
 class PersonService extends RestService
 {
+    public function __construct(protected EntityManagerInterface $em)
+    {
+        parent::__construct($this->em);
+    }
+
     public function createFromArray(array $data): Person
     {
         $person = new Person();
@@ -70,6 +75,7 @@ class PersonService extends RestService
     public function findOneByCriteria(PersonCriteria $criteria): ?Person
     {
         $results = $this->findByCriteria($criteria);
+
         return (isset($results[0])) ? $results[0] : null;
     }
 
