@@ -9,13 +9,13 @@ use Bone\BoneDoctrine\Attributes\Visibility;
 use Bone\BoneDoctrine\Traits\HasId;
 use Bone\BoneDoctrine\Traits\HasImage;
 use DateTimeInterface;
-use Del\Entity\Country;
 use Del\Form\Field\Attributes\Field;
 use Del\Factory\CountryFactory;
 use Del\Form\Field\Transformer\DateTimeTransformer;
 use Del\Form\Traits\HasFormFields;
 use Del\Person\Repository\PersonRepository;
 use Del\Traits\HasCountryTrait;
+use Del\Traits\HasOptionalCountry;
 use Doctrine\ORM\Mapping as ORM;
 use JsonSerializable;
 
@@ -57,12 +57,12 @@ class Person implements JsonSerializable
     #[Visibility('all')]
     private ?string $birthplace = '';
 
-    use HasCountryTrait;
+    use HasOptionalCountry;
     use HasImage;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     #[Field('string')]
-    #[Visibility('all')]
+    #[Visibility('noindex')]
     private ?string $backgroundImage = '';
 
     public function getFirstname(): ?string
