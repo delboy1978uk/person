@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Del\Person\Traits;
 
 use Del\Person\Entity\Person;
+use Doctrine\ORM\Mapping as ORM;
 
 trait HasOneToOnePerson
 {
